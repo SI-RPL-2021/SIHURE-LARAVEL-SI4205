@@ -247,7 +247,7 @@ return [
         ],
         [
             'text' => 'Absensi',
-            'url'  => 'admin/settings',
+            'url'  => 'admin/absen',
             'icon' => 'fas fa-fw fa-file-alt',
         ],
         [
@@ -261,7 +261,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Jatah dan Status Cuti',
-                    'url'  => '#',
+                    'url'  => 'admin/jatah_cuti',
                     'icon'    => 'fas fa-fw fa-calendar-times',
                     'shift'   => 'ml-4',
                 ],

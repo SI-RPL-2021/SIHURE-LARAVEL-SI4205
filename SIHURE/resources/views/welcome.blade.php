@@ -11,7 +11,7 @@
 @stop
 
 @section('content')
-    <!-- <p>Welcome to SIHURE</p> -->
+    {{-- <p>Welcome to SIHURE</p> --}}
     
 @stop
 
