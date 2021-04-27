@@ -254,20 +254,34 @@ return [
             'text' => 'Lembur',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-business-time',
+            'submenu' => [
+                [
+                    'text' => 'Pengajuan Lembur',
+                    'url'  => 'admin/pengajuan_lembur',
+                    'icon'    => 'fas fa-fw fa-calendar-times',
+                    'shift'   => 'ml-4',
+                ],
+                [
+                    'text'    => 'Approval Lembur',
+                    'url'     => 'admin/approval_lembur',
+                    'icon'    => 'fas fa-fw fa-scroll',
+                    'shift'   => 'ml-4',
+                ],
+            ],
         ],
         [
             'text'    => 'Cuti',
             'icon'    => 'fas fa-fw fa-calendar-day',
             'submenu' => [
                 [
-                    'text' => 'Jatah dan Status Cuti',
+                    'text' => 'Jumlah Cuti',
                     'url'  => 'admin/jatah_cuti',
                     'icon'    => 'fas fa-fw fa-calendar-times',
                     'shift'   => 'ml-4',
                 ],
                 [
-                    'text'    => 'Pengajuan Cuti',
-                    'url'     => '#',
+                    'text'    => 'Approval Cuti',
+                    'url'     => 'admin/approval_cuti',
                     'icon'    => 'fas fa-fw fa-scroll',
                     'shift'   => 'ml-4',
                 ],

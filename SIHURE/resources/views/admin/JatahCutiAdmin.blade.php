@@ -14,9 +14,8 @@
                             <th>No</th>
                             <th>NIP</th>
                             <th>Nama</th>
-                            <th>Tanggal Input</th>
                             <th>Jumlah Jatah Cuti</th>
-                            <th>Status</th>
+
                                                             
                         </tr>
                     </thead>
@@ -25,11 +24,9 @@
                             <td>1</td>
                             <td>122082</td>
                             <td>Anas</td>
-                            <td>30/02/2020</td>
+                     
                             <td>2</td>
-                            <td>
-                                <a class="btn btn-success" href="#" role="button">Edit</a>
-                            </td>
+                           
                             
                                                     
                         </tr>
@@ -37,22 +34,16 @@
                             <td>1</td>
                             <td>122082</td>
                             <td>Anas</td>
-                            <td>30/02/2020</td>
                             <td>2</td>
-                            <td>
-                                <a class="btn btn-success" href="#" role="button">Edit</a>
-                            </td>
+                            
                                                     
                         </tr>
                         <tr>
                             <td>1</td>
                             <td>122082</td>
                             <td>Anas</td>
-                            <td>30/02/2020</td>
                             <td>2</td>
-                            <td>
-                                <a class="btn btn-success" href="#" role="button">Edit</a>
-                            </td>
+                          
                                                         
                         </tr>
                     </tbody>

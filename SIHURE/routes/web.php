@@ -25,11 +25,31 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/admin', function () {
     return view('admin.HomeAdmin');
 });
-
 Route::get('/admin/absen', function () {
     return view('admin.AbsenAdmin');
 });
 Route::get('/admin/jatah_cuti', function () {
     return view('admin.JatahCutiAdmin');
+});
+Route::get('/admin/approval_cuti', function () {
+    return view('admin.ApprovalCuti');
+});
+Route::get('/admin/approval_cuti/edit', function () {
+    return view('admin.EditApproval');
+});
+Route::get('/admin/approval_cuti/edit', function () {
+    return view('admin.EditApproval');
+});
+Route::get('/admin/approval_lembur', function () {
+    return view('admin.ApprovalLembur');
+});
+Route::get('/admin/approval_lembur/edit', function () {
+    return view('admin.EditApprovalLembur');
+});
+Route::get('/admin/approval_lembur/edit', function () {
+    return view('admin.EditApprovalLembur');
+});
+Route::get('/admin/pengajuan_lembur', function () {
+    return view('admin.PengajuanLembur');
 });
 
