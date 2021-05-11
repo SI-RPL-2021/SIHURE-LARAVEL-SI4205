@@ -40,16 +40,7 @@ Route::get('/admin/approval_cuti/edit', function () {
 Route::get('/admin/approval_cuti/edit', function () {
     return view('admin.EditApproval');
 });
-Route::get('/admin/approval_lembur', function () {
-    return view('admin.ApprovalLembur');
-});
-Route::get('/admin/approval_lembur/edit', function () {
-    return view('admin.EditApprovalLembur');
-});
-Route::get('/admin/approval_lembur/edit', function () {
-    return view('admin.EditApprovalLembur');
-});
-Route::get('/admin/pengajuan_lembur', function () {
-    return view('admin.PengajuanLembur');
-});
 
+Route::get('/admin/Lembur', function () {
+    return view('admin.Lembur');
+});
