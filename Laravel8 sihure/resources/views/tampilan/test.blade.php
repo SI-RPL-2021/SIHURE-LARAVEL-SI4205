@@ -29,36 +29,25 @@ $divisi = Auth::user()->divisi ;
 <body class="hold-transition sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    
+        <!-- NAVBAR -->
+        <nav class="main-header navbar navbar-expand navbar-light" style="background-color: #C0CEEA;">
             <!-- Left navbar links -->
 
-            {{-- <ul class="navbar-nav">
+           <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="../../index3.html" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
-                </li>
-            </ul> --}}
-
-            {{-- <ul class="navbar-nav mr-auto">
                 <li class="nav-item ">
-                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }} " href="/">home</a>
+                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }} " href="/">Home</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link {{ request()->is('admin') ? 'active' : '' }}" href="/admin">admin</a>
+                    <a class="nav-link {{ request()->is('admin') ? 'active' : '' }}" href="/admin">Admin</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="/about">about</a>
+                    <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="/about">About</a>
                 </li>
-                <li class="nav-item ">
-                    <a class="nav-link {{ request()->is('lte' || 'detail/{$id}') ? 'active' : '' }}" href="/lte">LTE</a>
-                </li>
-            </ul> --}}
+            </ul> 
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
@@ -87,11 +76,11 @@ $divisi = Auth::user()->divisi ;
                 </li> --}}
 
                 <!-- Messages Dropdown Menu -->
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
-                </li>
+                </li> -->
 
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
@@ -103,11 +92,15 @@ $divisi = Auth::user()->divisi ;
 
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('logout') }}">
+                            {{ __('Profile') }}
+                        </a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
+                        
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
@@ -154,25 +147,27 @@ $divisi = Auth::user()->divisi ;
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
-            <a href="/" class="brand-link">
-                <div class="tes" style="text-align:center">
-                    <h1>S I H U R E</h1>
-                </div>
-            </a>
+        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #525A63;">
 
             <!-- Sidebar -->
             <div class="sidebar">
-                <!-- Sidebar user (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="/adminLTE/dist/img/3.png" class="img-circle elevation-2" alt="User Image">
+            <div class="user-panel mt-0 pb-0 mb-3 d-flex" style="font-weight: stronger; font-size:36px;">
+            <div class="image">
+                        <img src="{{ 'foto/logoSIHURE.png' }}" class="img-circle " alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                        <a href="#" class="d-block">SIHURE</a>
                     </div>
-                </div>
+            </div>
+                <!-- Sidebar user (optional) -->
+                    <!-- <div class="user-panel mt-1 pb-3 mb-3 d-flex">
+                        <div class="image">
+                            <img src="/adminLTE/dist/img/3.png" class="img-circle elevation-2" alt="User Image">
+                        </div>
+                        <div class="info">
+                            <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                        </div>
+                    </div> -->
 
                 <!-- SidebarSearch Form -->
                 <div class="form-inline">
@@ -342,7 +337,7 @@ $divisi = Auth::user()->divisi ;
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-
+<!-- 
         <footer class="main-footer">
             <div class="float-right d-none d-sm-block">
                 <b>Version</b> 3.1.0
@@ -353,7 +348,7 @@ $divisi = Auth::user()->divisi ;
                         d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
                 </svg>.</strong> All rights
             reserved.
-        </footer>
+        </footer> -->
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">

@@ -17,61 +17,19 @@ class karyawanController extends Controller
 
     public function cuti()
     {
-
-
-        $id = 1;
-        $data1 = DB::select("SELECT sum(jumlahhari) as jumlahhari, id_user FROM `cuti` WHERE STATUS
-        not in (0,2) and id_user = ".$id." group by id_user");
-        $data2 = $data1[0];
-
-        $data3 = DB::table("cuti")
-                ->where("id_user", 1)
-                ->get();
-
-        return view('karyawan.cuti', ["test" => $data2],["data" => $data3] );
+        return view('karyawan.cuti');
     }
 
     public function absensi()
     {
-        date_default_timezone_set('Asia/Jakarta');
-        $now = date('Y-m-d');
-        $absen_karyawan = DB::select("select  * from todo where id_user = 1
-            and jam_masuk between '" . $now . " 00:00:00' and '" . $now . " 23:59:59'  order by jam_masuk desc limit 1");
-        if ($absen_karyawan) {
-            $absen = $absen_karyawan[0];
-        } else {
-            $absen = [];
-        }
 
-        // return redirect()->route('absensi')->with('pesan','data berhasil ditambahkan');
-
-        return view('karyawan.absensi', ["data_absen" => $absen]);
+        return view('karyawan.absensi');
     }
 
     public function lemburinsert(Request $request)
     {
 
-        // $waktu_awal        = strtotime ('2019-02-25 $request->mulai');
-        // $waktu_akhir    = strtotime ('2019-02-26 $request->selesai');
-
-        $waktu_awal        =strtotime("2019-10-11 $request->mulai");
-        $waktu_akhir    =strtotime("2019-10-11 $request->selesai");
-
-        $diff    =$waktu_akhir - $waktu_awal;
-        $jam    =floor($diff / (60 * 60));
-        $menit    =$diff - $jam * (60 * 60);
-
-
-        DB::table("lembur")
-        ->insert([
-            "jumlah_jam" => $jam,
-            "jam_mulai" => $request->mulai,
-            "jam_selesai" => $request->selesai,
-            "tanggal" => $request->tanggal,
-            "nama" => $request->nama,
-            "status" => $request->status,
-
-        ]);
+      
 
     return redirect()->route('lembur')->with('pesan', 'data lembur berhasil ditambahkan');
 
@@ -79,10 +37,7 @@ class karyawanController extends Controller
 
     public function lembur()
     {
-
-        $data1 =  DB::table("lembur")->get();
-
-        return view('karyawan.lembur', ['data_all' => $data1]);
+        return view('karyawan.lembur');
     }
 
     public function karyawan()
