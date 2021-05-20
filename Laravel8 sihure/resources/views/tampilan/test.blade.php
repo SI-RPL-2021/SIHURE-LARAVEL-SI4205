@@ -38,7 +38,7 @@ $divisi = Auth::user()->divisi ;
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                <li class="nav-item ">
+                <!-- <li class="nav-item ">
                     <a class="nav-link {{ request()->is('/') ? 'active' : '' }} " href="/">Home</a>
                 </li>
                 <li class="nav-item ">
@@ -46,7 +46,7 @@ $divisi = Auth::user()->divisi ;
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="/about">About</a>
-                </li>
+                </li> -->
             </ul> 
 
             <!-- Right navbar links -->
@@ -82,6 +82,17 @@ $divisi = Auth::user()->divisi ;
                     </a>
                 </li> -->
 
+                <li class="nav-item">
+                <div class="user-panel d-flex">
+                <div class="image">
+                        <img src="{{ '/foto/3.png' }}" class="img-circle elevation-1" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="/home" class="d-block" style="color:#525A63; font-weight:strong; font-size:20px;"> SIHURE</a>
+                    </div>
+                </div>
+                </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -92,7 +103,7 @@ $divisi = Auth::user()->divisi ;
 
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('logout') }}">
+                        <a class="dropdown-item" href=#>
                             {{ __('Profile') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
@@ -109,7 +120,7 @@ $divisi = Auth::user()->divisi ;
                 </li>
 
                 <!-- Notifications Dropdown Menu -->
-                {{-- <li class="nav-item dropdown">
+                <!-- <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>
                         <span class="badge badge-warning navbar-badge">15</span>
@@ -134,14 +145,14 @@ $divisi = Auth::user()->divisi ;
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                     </div>
-                </li> --}}
+                </li> -->
 
 
-                {{-- <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
                         <i class="fas fa-th-large"></i>
                     </a>
-                </li> --}}
+                </li>  -->
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -153,10 +164,10 @@ $divisi = Auth::user()->divisi ;
             <div class="sidebar">
             <div class="user-panel mt-0 pb-0 mb-3 d-flex" style="font-weight: stronger; font-size:36px;">
             <div class="image">
-                        <img src="{{ 'foto/logoSIHURE.png' }}" class="img-circle " alt="User Image">
+                        <img src="{{ '/foto/logoSIHURE.png' }}" class="img-circle " alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">SIHURE</a>
+                        <a href="/home" class="d-block">SIHURE</a>
                     </div>
             </div>
                 <!-- Sidebar user (optional) -->
