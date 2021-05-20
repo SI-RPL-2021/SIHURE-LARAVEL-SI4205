@@ -23,7 +23,7 @@
     document.getElementById("waktu").innerHTML = dt.toLocaleTimeString();
 </script>
 <br>
-<h2 style='text-align:center; color:#6F7D87; font-family:Open Sans,Arial,sans-serif; font-size:40px; font-weight: 500;'>ABSENSI</h2>
+<h2 style='text-align:center; color:#525A63; font-family:Open Sans,Arial,sans-serif; font-size:40px; font-weight: 500;'>ABSENSI</h2>
 
 {{-- <p>Welcome to SIHURE</p> --}}
 
