@@ -263,27 +263,45 @@ $divisi = Auth::user()->divisi ;
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    Cuti
+                                </p>
+                                <i class="right fas fa-angle-left"></i>
+                            </a>
+                                    <ul class="nav nav-treeview">
+                                    <li class="nav-item ml-4">
+                                    <a href="/hr/jatahcuti" class="nav-link {{ request()->is('hr/jatahcuti') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Jatah Cuti</p>
+                                    </a>
+                                    </li>
+                                    <li class="nav-item ml-4">
                                     <a href="/hr/cuti" class="nav-link {{ request()->is('hr/cuti') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>cuti</p>
+                                        <p>Status Cuti</p>
                                     </a>
+                                    </li>
+
+                                    </ul>
                                 </li>
                                 <li class="nav-item">
                                     <a href="/hr/karyawan" class="nav-link {{ request()->is('hr/karyawan') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>karyawan</p>
+                                        <p>Karyawan</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="/hr/lembur" class="nav-link {{ request()->is('hr/lembur') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>lembur</p>
+                                        <p>Lembur</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="/hr/penggajian" class="nav-link {{ request()->is('hr/penggajian') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>penggajian</p>
+                                        <p>Penggajian</p>
                                     </a>
                                 </li>
                             </ul>
