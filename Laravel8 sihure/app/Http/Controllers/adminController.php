@@ -27,17 +27,7 @@ class adminController extends Controller
 
     public function lembur()
     {
-        $data1 =  DB::table("users")->where("id", 1)->get();
-        $data2 =  DB::table("lembur")->get();
-
-        $data3 = DB::table("users")
-            ->where("id", 1)
-            ->get();
-
-        $data4 = $data3[0];
-
-        $data_all = [$data1, $data2];
-        return view('admin.lembur', ['data_all' => $data_all], ["test" => $data4]);
+        return view('admin.lembur');
     }
 
     public function cuti()
