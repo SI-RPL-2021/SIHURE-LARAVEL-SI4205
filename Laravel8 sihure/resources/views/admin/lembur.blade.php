@@ -39,7 +39,7 @@
             <br>
             <table class="table table-bordered">
                 <!-- Header Table -->
-                <thead class="bg-lightblue">
+                <thead style= "background-color:#5882B7;color:white;">
                     <tr>
                         <th style="text-align:center;">No.</th>
                         <th style="text-align:center;">Jumlah Jam</th>
