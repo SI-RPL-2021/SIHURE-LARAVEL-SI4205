@@ -29,7 +29,7 @@ $divisi = Auth::user()->divisi ;
 <body class="hold-transition sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
-    
+
         <!-- NAVBAR -->
         <nav class="main-header navbar navbar-expand navbar-light" style="background-color: #C0CEEA;">
             <!-- Left navbar links -->
@@ -47,7 +47,7 @@ $divisi = Auth::user()->divisi ;
                 <li class="nav-item ">
                     <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="/about">About</a>
                 </li> -->
-            </ul> 
+            </ul>
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
@@ -111,7 +111,7 @@ $divisi = Auth::user()->divisi ;
                                          document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
-                        
+
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
@@ -198,7 +198,7 @@ $divisi = Auth::user()->divisi ;
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
 
-                        @if ( $divisi  == 'karyawan')
+                        {{-- @if ( $divisi  == 'karyawan') --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link {{ request()->is('karyawan/absensi' || 'karyawan/cuti'
                                 || 'karyawan/lembur' || 'karyawan/karyawan' || 'karyawan/gaji' ) ? '' : 'active' }}">
@@ -247,7 +247,7 @@ $divisi = Auth::user()->divisi ;
                         </li>
 
 
-                        @elseif ( $divisi  == 'hr')
+                        {{-- @elseif ( $divisi  == 'hr') --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <p>
@@ -307,7 +307,7 @@ $divisi = Auth::user()->divisi ;
                             </ul>
                         </li>
 
-                        @elseif ( $divisi  == 'admin')
+                        {{-- @elseif ( $divisi  == 'admin') --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <p>
@@ -342,7 +342,7 @@ $divisi = Auth::user()->divisi ;
                                 </li>
                             </ul>
                         </li>
-                        @endif
+                        {{-- @endif --}}
 
 
                     </ul>
@@ -366,7 +366,7 @@ $divisi = Auth::user()->divisi ;
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-<!-- 
+<!--
         <footer class="main-footer">
             <div class="float-right d-none d-sm-block">
                 <b>Version</b> 3.1.0

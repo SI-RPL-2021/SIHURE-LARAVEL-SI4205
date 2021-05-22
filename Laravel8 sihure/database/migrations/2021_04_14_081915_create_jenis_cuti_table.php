@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAkunTable extends Migration
+class CreateJenisCutiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class CreateAkunTable extends Migration
      */
     public function up()
     {
-        Schema::create('akun', function (Blueprint $table) {
+        Schema::create('jenis_cuti', function (Blueprint $table) {
+            $table->id();
+            $table->string('jenis_cuti');
+            $table->integer('jumlah_hari');
 
+            $table->timestamps();
         });
     }
 
@@ -25,6 +29,6 @@ class CreateAkunTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('akun');
+        Schema::dropIfExists('jenis_cuti');
     }
 }

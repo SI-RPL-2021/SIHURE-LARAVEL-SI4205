@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBelajarTable extends Migration
+class CreateEmployeesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateBelajarTable extends Migration
      */
     public function up()
     {
-        Schema::create('belajar', function (Blueprint $table) {
+        Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->string('fullname');
-            $table->string('nim');
-            $table->string('divisi');
-            $table->integer('angkatan');
+            $table->string('name');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users');
+
         });
     }
 
@@ -32,6 +28,6 @@ class CreateBelajarTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('belajar');
+        Schema::dropIfExists('employees');
     }
 }
