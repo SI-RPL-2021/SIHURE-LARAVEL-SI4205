@@ -15,10 +15,10 @@ class CreatePenggajianTable extends Migration
     {
         Schema::create('penggajian', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('tunjangan_id');
-            $table->unsignedBigInteger('konsumsi_id');
-            $table->unsignedBigInteger('lembur_id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('id_tunjangan');
+            $table->unsignedBigInteger('id_konsumsi');
+            $table->unsignedBigInteger('id_lembur');
+            $table->unsignedBigInteger('id_users');
 
             $table->integer('gaji_pokok');
             $table->integer('jumlah_tanggungan');
@@ -32,10 +32,10 @@ class CreatePenggajianTable extends Migration
             $table->integer('jumlah_absen');
             $table->integer('biaya_potongan');
 
-            $table->foreign('tunjangan_id')->references('id')->on('tunjangan');
-            $table->foreign('konsumsi_id')->references('id')->on('konsumsi');
-            $table->foreign('lembur_id')->references('id')->on('lembur');
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('id_tunjangan')->references('id')->on('tunjangan');
+            $table->foreign('id_konsumsi')->references('id')->on('konsumsi');
+            $table->foreign('id_lembur')->references('id')->on('lembur');
+            $table->foreign('id_users')->references('id')->on('users');
             $table->timestamps();
         });
     }

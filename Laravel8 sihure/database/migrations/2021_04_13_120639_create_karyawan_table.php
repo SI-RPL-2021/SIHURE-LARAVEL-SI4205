@@ -15,7 +15,7 @@ class CreateKaryawanTable extends Migration
     {
         Schema::create('karyawan', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('divisi_id');
+            $table->unsignedBigInteger('id_divisi');
             $table->string('nama');
             $table->string('agama');
             $table->string('tempat_lahir');
@@ -36,7 +36,7 @@ class CreateKaryawanTable extends Migration
             $table->integer('npwp');
             $table->integer('bpjs');
             $table->timestamps();
-            $table->foreign('divisi_id')->references('id')->on('divisi');
+            $table->foreign('id_divisi')->references('id')->on('divisi');
         });
     }
 

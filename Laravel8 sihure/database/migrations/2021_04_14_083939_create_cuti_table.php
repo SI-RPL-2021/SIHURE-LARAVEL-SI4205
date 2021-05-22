@@ -15,8 +15,8 @@ class CreateCutiTable extends Migration
     {
         Schema::create('cuti', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('jenis_cuti_id');
+            $table->unsignedBigInteger('id_users');
+            $table->unsignedBigInteger('id_jenis_cuti');
 
             $table->string('alasan_cuti');
             $table->integer('jatah_cuti');
@@ -25,8 +25,8 @@ class CreateCutiTable extends Migration
             $table->date('jumlah_hari');
             $table->integer('total_cuti');
 
-            $table->foreign('user_id')->references('id')->on('user');
-            $table->foreign('jenis_cuti_id')->references('id')->on('jenis_cuti');
+            $table->foreign('id_users')->references('id')->on('users');
+            $table->foreign('id_jenis_cuti')->references('id')->on('jenis_cuti');
             $table->timestamps();
         });
     }

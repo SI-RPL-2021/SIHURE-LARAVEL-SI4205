@@ -15,10 +15,10 @@ class CreateBiayaLemburTable extends Migration
     {
         Schema::create('biaya_lembur', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('karyawan_id');
+            $table->unsignedBigInteger('id_karyawan');
             $table->string('jabatan');
             $table->integer('biaya_lembur');
-            $table->foreign('karyawan_id')->references('id')->on('karyawan');
+            $table->foreign('id_karyawan')->references('id')->on('karyawan');
             $table->timestamps();
 
         });

@@ -15,10 +15,10 @@ class CreateProfileTable extends Migration
     {
         Schema::create('profile', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('id_users');
             $table->string('status');
             $table->time('jam_ganti');
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('id_users')->references('id')->on('users');
             $table->timestamps();
         });
     }

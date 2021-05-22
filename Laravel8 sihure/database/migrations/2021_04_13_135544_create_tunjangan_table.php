@@ -15,11 +15,11 @@ class CreateTunjanganTable extends Migration
     {
         Schema::create('tunjangan', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('karyawan_id');
+            $table->unsignedBigInteger('id_karyawan');
             $table->string('jabatan');
             $table->string('jenis_tunjangan');
             $table->integer('biaya_tunjangan');
-            $table->foreign('karyawan_id')->references('id')->on('karyawan');
+            $table->foreign('id_karyawan')->references('id')->on('karyawan');
             $table->timestamps();
 
         });

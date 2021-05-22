@@ -18,9 +18,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('name');
             $table->string('password');
-            $table->string('divisi')->nullable();;
+            $table->unsignedBigInteger('id_divisi')->nullable();
+            $table->unsignedBigInteger('id_karyawan')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->foreign('id_divisi')->references('id')->on('divisi');
+            $table->foreign('id_karyawan')->references('id')->on('karyawan');
         });
     }
 
