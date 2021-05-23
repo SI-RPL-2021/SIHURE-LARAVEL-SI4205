@@ -15,9 +15,9 @@ class CreateProfileTable extends Migration
     {
         Schema::create('profile', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_users');
-            $table->string('status');
-            $table->time('jam_ganti');
+            $table->unsignedBigInteger('id_users')->nullable();
+            $table->string('status')->nullable();
+            $table->time('jam_ganti')->nullable();
             $table->foreign('id_users')->references('id')->on('users');
             $table->timestamps();
         });

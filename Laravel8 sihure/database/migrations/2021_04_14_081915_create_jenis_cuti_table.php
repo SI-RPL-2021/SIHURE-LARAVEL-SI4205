@@ -15,8 +15,8 @@ class CreateJenisCutiTable extends Migration
     {
         Schema::create('jenis_cuti', function (Blueprint $table) {
             $table->id();
-            $table->string('jenis_cuti');
-            $table->integer('jumlah_hari');
+            $table->string('jenis_cuti')->nullable();
+            $table->integer('jumlah_hari')->nullable();
 
             $table->timestamps();
         });

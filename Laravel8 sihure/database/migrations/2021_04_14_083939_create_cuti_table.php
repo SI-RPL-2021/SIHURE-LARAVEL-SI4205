@@ -15,15 +15,16 @@ class CreateCutiTable extends Migration
     {
         Schema::create('cuti', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_users');
-            $table->unsignedBigInteger('id_jenis_cuti');
+            $table->unsignedBigInteger('id_users')->nullable();
+            $table->unsignedBigInteger('id_jenis_cuti')->nullable();
 
-            $table->string('alasan_cuti');
-            $table->integer('jatah_cuti');
-            $table->date('tanggal_mulai');
-            $table->date('tanggal_selesai');
-            $table->date('jumlah_hari');
-            $table->integer('total_cuti');
+            $table->string('alasan_cuti')->nullable();
+            $table->integer('jatah_cuti')->nullable();
+            $table->date('tanggal_mulai')->nullable();
+            $table->date('tanggal_selesai')->nullable();
+            $table->date('jumlah_hari')->nullable();
+            $table->integer('total_cuti')->nullable();
+            $table->integer('status->nullable()')->nullable();
 
             $table->foreign('id_users')->references('id')->on('users');
             $table->foreign('id_jenis_cuti')->references('id')->on('jenis_cuti');

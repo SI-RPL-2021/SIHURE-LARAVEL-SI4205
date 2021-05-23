@@ -19,6 +19,7 @@ Route::get('/karyawan/gaji', [karyawanController::class, 'gaji']);
 Route::post('/karyawan/todo', [karyawanController::class, 'todo']);
 Route::get('/karyawan/absenpulang', [karyawanController::class, 'absenPulang']);
 Route::post('/karyawan/tabel', [karyawanController::class, 'buattabel']);
+Route::get('/karyawan/profile', [karyawanController::class, 'profile']);
 
 //hr
 Route::get('/hr/absensi', [hrController::class, 'absensi']);

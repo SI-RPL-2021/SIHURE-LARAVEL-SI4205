@@ -15,11 +15,11 @@ class CreateLemburTable extends Migration
     {
         Schema::create('lembur', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_biaya_lembur');
-            $table->string('tanggal');
-            $table->integer('jumlah_jam');
-            $table->time('jam_mulai');
-            $table->time('jam_selesai');
+            $table->unsignedBigInteger('id_biaya_lembur')->nullable();
+            $table->string('tanggal')->nullable();
+            $table->integer('jumlah_jam')->nullable();
+            $table->time('jam_mulai')->nullable();
+            $table->time('jam_selesai')->nullable();
             $table->foreign('id_biaya_lembur')->references('id')->on('biaya_lembur');
             $table->timestamps();
         });

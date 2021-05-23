@@ -15,8 +15,8 @@ class CreateKonsumsiTable extends Migration
     {
         Schema::create('konsumsi', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_karyawan');
-            $table->integer('biaya_konsumsi');
+            $table->unsignedBigInteger('id_karyawan')->nullable();
+            $table->integer('biaya_konsumsi')->nullable();
             $table->foreign('id_karyawan')->references('id')->on('karyawan');
             $table->timestamps();
 

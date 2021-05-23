@@ -15,9 +15,9 @@ class CreateBiayaLemburTable extends Migration
     {
         Schema::create('biaya_lembur', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_karyawan');
-            $table->string('jabatan');
-            $table->integer('biaya_lembur');
+            $table->unsignedBigInteger('id_karyawan')->nullable();
+            $table->string('jabatan')->nullable();
+            $table->integer('biaya_lembur')->nullable();
             $table->foreign('id_karyawan')->references('id')->on('karyawan');
             $table->timestamps();
 

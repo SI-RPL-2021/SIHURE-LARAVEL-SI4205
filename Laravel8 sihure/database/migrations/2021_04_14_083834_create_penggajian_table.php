@@ -15,22 +15,22 @@ class CreatePenggajianTable extends Migration
     {
         Schema::create('penggajian', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_tunjangan');
-            $table->unsignedBigInteger('id_konsumsi');
-            $table->unsignedBigInteger('id_lembur');
-            $table->unsignedBigInteger('id_users');
+            $table->unsignedBigInteger('id_tunjangan')->nullable();
+            $table->unsignedBigInteger('id_konsumsi')->nullable();
+            $table->unsignedBigInteger('id_lembur')->nullable();
+            $table->unsignedBigInteger('id_users')->nullable();
 
-            $table->integer('gaji_pokok');
-            $table->integer('jumlah_tanggungan');
-            $table->integer('biaya_tanggungan');
-            $table->time('jam_lembur');
-            $table->integer('biaya_lembur');
-            $table->string('jenis_konsumsi');
-            $table->integer('biaya_konsumsi');
-            $table->string('jenis_tunjangan');
-            $table->integer('biaya_tunjangan');
-            $table->integer('jumlah_absen');
-            $table->integer('biaya_potongan');
+            $table->integer('gaji_pokok')->nullable();
+            $table->integer('jumlah_tanggungan')->nullable();
+            $table->integer('biaya_tanggungan')->nullable();
+            $table->time('jam_lembur')->nullable();
+            $table->integer('biaya_lembur')->nullable();
+            $table->string('jenis_konsumsi')->nullable();
+            $table->integer('biaya_konsumsi')->nullable();
+            $table->string('jenis_tunjangan')->nullable();
+            $table->integer('biaya_tunjangan')->nullable();
+            $table->integer('jumlah_absen')->nullable();
+            $table->integer('biaya_potongan')->nullable();
 
             $table->foreign('id_tunjangan')->references('id')->on('tunjangan');
             $table->foreign('id_konsumsi')->references('id')->on('konsumsi');

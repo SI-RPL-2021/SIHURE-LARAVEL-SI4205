@@ -17,19 +17,47 @@ class karyawanController extends Controller
 
     public function cuti()
     {
-        return view('karyawan.cuti');
+
+        $user_id = auth()->user()->id;
+
+        $data1 = DB::select("SELECT sum(jumlah_hari) as jumlah_hari, id_users FROM `cuti` WHERE STATUS
+        not in (0,2) and id_users = ".$user_id." group by id_user");
+        $data2 = $data1[0];
+
+        $data3 = DB::table("cuti")
+                ->where("id_user", $user_id)
+                ->get();
+
+        return view('karyawan.cuti', ["test" => $data2],["data" => $data3] );
+
+        // return view('karyawan.cuti');
     }
 
     public function absensi()
     {
+        $user_id = auth()->user()->id;
 
-        return view('karyawan.absensi');
+        date_default_timezone_set('Asia/Jakarta');
+        $now = date('Y-m-d');
+        $absen_karyawan = DB::select("select  * from absensi where id_users = $user_id
+            and jam_masuk between '" . $now . " 00:00:00' and '" . $now . " 23:59:59'  order by jam_masuk desc limit 1");
+        if ($absen_karyawan) {
+            $absen = $absen_karyawan[0];
+        } else {
+            $absen = [];
+        }
+
+        // return redirect()->route('absensi')->with('pesan','data berhasil ditambahkan');
+
+        return view('karyawan.absensi', ["data_absen" => $absen]);
+
+        // return view('karyawan.absensi');
     }
 
     public function lemburinsert(Request $request)
     {
 
-      
+
 
     return redirect()->route('lembur')->with('pesan', 'data lembur berhasil ditambahkan');
 
@@ -57,28 +85,15 @@ class karyawanController extends Controller
         date_default_timezone_set('Asia/Jakarta');
 
         $now = date('Y-m-d H:i:s');
+        $user_id = auth()->user()->id;
+        $user_name = auth()->user()->name;
 
-        //  request()->validate([
-        //     'todo' => 'required',
-
-        //  ],[
-
-        //     'todo.required' => 'wajib diisi cok !',
-
-        // ]);
-
-        // $data = [
-
-        //     'todo' => Request()->todo_kegiatan,
-        //     'id_user' => Request()->email,
-
-        // ];
-        DB::table("todo")
+        DB::table("absensi")
             ->insert([
-                "id_user" => 1,
+                "id_users" => $user_id,
                 "todo" => $request->todo_kegiatan,
                 "jam_masuk" => $now,
-                "nama" => 'adli',
+
             ]);
 
         // $this->testModels->addData($data);
@@ -88,10 +103,11 @@ class karyawanController extends Controller
     public function absenPulang(Request $request)
     {
         date_default_timezone_set('Asia/Jakarta');
+        $user_id = auth()->user()->id;
 
         $now = date('Y-m-d H:i:s');
-        DB::table("todo")
-            ->where("id_user", 1)
+        DB::table("absensi")
+            ->where("id_users", $user_id)
             ->update([
                 "jam_keluar" => $now
             ]);
@@ -116,8 +132,6 @@ class karyawanController extends Controller
                 "nama" => 'adli',
 
             ]);
-
-
 
 
         return redirect()->route('cuti')->with('pesan', 'data berhasil ditambahkan');
