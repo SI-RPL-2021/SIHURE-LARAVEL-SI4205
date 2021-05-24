@@ -37,7 +37,7 @@ Route::post('/hr/jatahcuti/{id}', [hrController::class, 'jatahcutiupdate']);
 Route::get('/admin/profile', [adminController::class, 'profile']);
 Route::get('/admin/cuti', [adminController::class, 'cuti'])->name('admincuti');
 Route::get('/admin/lembur', [adminController::class, 'lembur'])->name('adminlembur');
-Route::get('/admin/karyawan', [adminController::class, 'karyawan']);
+Route::get('/admin/karyawan', [karyawanController::class, 'karyawan']);
 Route::post('/admin/approve/lembur', [adminController::class, 'approve']);
 Route::post('/admin/lembur/insert', [adminController::class, 'lemburinsert']);
 Route::get('/admin/lembur/lihat', [adminController::class, 'lemburlihat']);
