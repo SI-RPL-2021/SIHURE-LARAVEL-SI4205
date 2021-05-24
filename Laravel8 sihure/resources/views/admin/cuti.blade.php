@@ -34,52 +34,41 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-12"> 
-
+        <div class="col-12">
             <table class="table table-bordered">
                 <!-- Header Table -->
-                <thead style= "background-color:#5882B7;color:white;">
+                <thead style="background: #5882B7; color:white;">
                     <tr>
                         <th style="text-align:center;">No.</th>
-                        <th style="text-align:center;">NIP</th>
                         <th style="text-align:center;">Nama</th>
-                        <th style="text-align:center;">Tanggal Input</th>
+                        <th style="text-align:center;">Tanggal Mulai</th>
+                        <th style="text-align:center;">Tanggal Selesai</th>
+                        <th style="text-align:center;">Jumlah Hari</th>
                         <th style="text-align:center;">Status</th>
-
                     </tr>
                 </thead>
                 <!-- Konten Table -->
                 <tbody>
-                    <tr style="text-align:center;">
 
-                        <td>1</td>
-                        <td>122082</td>
-                        <td>Anas</td>
-                        <td>30/02/2020</td>
-                        <td>
-                            <button class="btn btn-success" role="button" data-toggle="modal" data-target="#editLembur">Edit</button>
-                        </td>
+                    <?php $no = 1; ?>
+                    @foreach ($data_all[0] as $data)
 
-                    </tr>
-                    <tr style="text-align:center;">
-                        <td>1</td>
-                        <td>122082</td>
-                        <td>Anas</td>
-                        <td>30/02/2020</td>
-                        <td>
-                            <button class="btn btn-success" role="button" data-toggle="modal" data-target="#editLembur">Edit</button>
-                        </td>
+                        <tr>
+                            <td>{{ $no++ }}</td>
+                            <td>{{ $data->nama }}</td>
+                            <td>{{ $data->tanggalmulai  }}</td>
+                            <td>{{ $data->tanggalberakhir }}</td>
 
-                    </tr>
-                    <tr style="text-align:center;">
-                        <td>1</td>
-                        <td>122082</td>
-                        <td>Anas</td>
-                        <td>30/02/2020</td>
-                        <td>
-                            <button class="btn btn-success" role="button" data-toggle="modal" data-target="#editLembur">Edit</button>
-                        </td>
-                    </tr>
+                            <td>{{ $data->jumlahhari * -1 }} Hari</td>
+                            {{-- <td><a href="/hr/cuti/{{$data->id}}" class="btn btn-danger">{{ $data->status }}</a></td> --}}
+                            <td><button type="button" class="btn btn-sm btn-warning" data-toggle="modal"
+                                    data-target="#delete{{ $data->id }}">
+                                    Pending
+                                </button></td>
+
+                        </tr>
+                    @endforeach
+
                 </tbody>
             </table>
         </div>
@@ -88,63 +77,72 @@
 
 
 <!-- modals edit-->
-<div class="modal fade" id="editLembur" tabindex="-1" role="dialog" aria-labelledby="Edit" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+@foreach ($data_all[0] as $data)
+<div class="modal fade" id="delete{{ $data->id }}">
+    <div class="modal-dialog">
+        <div class="modal-content bg-secondary">
             <div class="modal-header">
-                <h5 class="modal-title" id="addLabel" style='text-align:center; color:#525A63; font-family:Open Sans,Arial,sans-serif; font-size:20px;'>Edit Status Cuti</h5>
+                <h4 class="modal-title">Approval Cuti</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+
+
+                <form action="/admin/approvecuti" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <!-- {{ csrf_field() }} -->
                     <div class="form-group">
-                        <label for="id"> NIP :</label>
-                        <input type="text" class="form-control" name="id" id="id" />
+                        <input type="hidden" class="form-control" name="id" readonly="true"
+                            value="{{ $data->id }}">
                     </div>
                     <div class="form-group">
-                        <label for="nama"> Nama :</label>
-                        <input type="text" class="form-control" name="nama" id="nama" />
-                    </div>         
-                    <div class="form-group">
-                        <label for="TanggalMulai">Tanggal Mulai :</label>
-                        <input type="date" class="form-control" name="TanggalMulai" id="TanggalMulai"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="TanggalSelesai">Tanggal Selesai :</label>
-                        <input type="date" class="form-control" name="TanggalSelesai" id="TanggalSelesai"></textarea>
+                        <label for="nama">Nama:</label>
+                        <input type="text" class="form-control" readonly="true" value="{{ $data->nama }}">
                     </div>
 
                     <div class="form-group">
-                        <label for="AlasanCuti"> Alasan Cuti :</label>
-                        <input type="text" class="form-control" name="AlasanCuti" id="AlasanCuti" />
+                        <label for="nama">Alasan Cuti:</label>
+                        <input type="text" class="form-control" readonly="true" value="{{ $data->alasan }}">
                     </div>
                     <div class="form-group">
-                       
-                        <div class="form-group">
-                            <label for="status">Status:</label> <br>
-                            <select name="status" id="status" style='width:465px; height:30px;'>
-                              <option value="approved">Approved</option>
-                              <option value="not approved">Not Approved</option>
-                            </select>
-                          </div>
+                        <label for="check-in">Tanggal Mulai:</label>
+                        <input type="date" class="form-control" readonly="true"
+                            value="{{ $data->tanggalmulai }}">
                     </div>
                     <div class="form-group">
-                        <label for="keterangan"> Keterangan :</label>
-                        <input type="text" class="form-control" name="keterangan" id="keterangan" />
+                        <label for="check-in">Tanggal Selesai:</label>
+                        <input type="date" class="form-control" readonly="true"
+                            value="{{ $data->tanggalberakhir }}">
                     </div>
-                </form>
-            </div>
-           
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" name="submitcuti" data-toggle="modal" data-target="#submitcuti">Submit</button>
+                    <div class="form-group">
+                        <label for="check-in">Status:</label>
+                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="status">
+                            <option value="1">Approve</option>
+                            <option value="2">Not Approve</option>
+                            <option value="0" selected>Pending</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="check-in">Keterangan:</label>
+                        <input type="text" class="form-control" name="keterangan" required>
+                    </div>
+
             </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-outline-light" data-dismiss="modal">No</button>
+                <button class="btn btn-outline-light" type="submit" toastsDefaultInfo>Yes</button>
+
+                {{-- <a href="/hr/penggajian/{{$data->id}}"class="btn btn-outline-light">Yes</a> --}}
+            </div>
+            </form>
         </div>
+        <!-- /.modal-content -->
     </div>
+    <!-- /.modal-dialog -->
 </div>
-
+@endforeach
 
 @endsection

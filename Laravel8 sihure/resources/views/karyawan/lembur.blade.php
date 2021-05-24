@@ -31,7 +31,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-12"> 
+        <div class="col-12">
             <button type="button" class="btn float-left" style="background-color:#5882B7; color:white;" name="addlembur" data-toggle="modal" data-target="#addlembur">Ajukan Lembur</button> <br>
             <br>
             <table class="table table-bordered">
@@ -42,36 +42,37 @@
                         <th style="text-align:center;">Jumlah Jam</th>
                         <th style="text-align:center;">Jam Mulai</th>
                         <th style="text-align:center;">Jam Selesai</th>
+                        <th style="text-align:center;">Tanggal</th>
                         <th style="text-align:center;">Status</th>
-                        <th style="text-align:center;">Keterangan</th>
                     </tr>
                 </thead>
                 <!-- Konten Table -->
                 <tbody>
-                    <tr style="text-align:center;">
-                        <th>1</th>
-                        <td>3</td>
-                        <td>18:00</td>
-                        <td>21:00</td>
-                        <td>Approved</td>
-                        <td>Lanjutkan</td>
-                    </tr>
-                    <tr style="text-align:center;">
-                        <th>2</th>
-                        <td>3</td>
-                        <td>18:00</td>
-                        <td>21:00</td>
-                        <td>Rejected</td>
-                        <td>Ajukan Ulang</td>
-                    </tr>
-                    <tr style="text-align:center;">
-                        <th>3</th>
-                        <td>3</td>
-                        <td>18:00</td>
-                        <td>21:00</td>
-                        <td>Pending</td>
-                        <td>-</td>
-                    </tr>
+
+                    <?php $no = 1; ?>
+                        @foreach ($data_all as $data)
+                            <tr>
+                                <td>{{ $no++ }}</td>
+                                <td>{{ $data->jumlah_jam }} Jam</td>
+                                <td>{{ $data->jam_mulai }}</td>
+                                <td>{{ $data->jam_selesai }}</td>
+                                <td>{{ $data->tanggal }}</td>
+                                <td>
+
+                                    @if ($data->status == 1)
+                                    <button class="btn btn-success  animate__animated animate__bounceIn">Approved</button>
+                                @elseif ( $data->status == 2 )
+                                    <button class="btn btn-danger  animate__animated animate__bounceIn">Not Approve</button>
+                                @elseif ( $data->status == 0 )
+                                    <button class="btn btn-warning  animate__animated animate__bounceIn">Pending</button>
+                                @endif
+
+                                </td>
+
+
+                            </tr>
+                        @endforeach
+
                 </tbody>
             </table>
         </div>
@@ -83,39 +84,52 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addLabel" style='text-align:center; color:#6F7D87; font-family:Open Sans,Arial,sans-serif; font-size:20px;'>Pengajuan Lembur</h5>
+                <h5 class="modal-title" id="addLabel"
+                    style='text-align:center; color:#6F7D87; font-family:Open Sans,Arial,sans-serif; font-size:20px;'>
+                    Pengajuan Lembur</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="/karyawan/lembur/insert" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <!-- {{ csrf_field() }} -->
                     <div class="form-group">
-                        <label for="id"> NIP :</label>
-                        <input type="text" class="form-control" name="id" id="id" />
+                        <input type="hidden" class="form-control" name="nama" readonly="true" value="">
+                        <input type="hidden" class="form-control" name="status" readonly="true" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="id"> nama :</label>
+                        <input type="text" class="form-control" name="nama" id="id" value="{{ Auth::user()->name }}" readonly>
                     </div>
                     <div class="form-group">
                         <label for="TanggalLembur">Tanggal Lembur :</label>
-                        <input type="date" class="form-control" name="TanggalLembur" id="TanggalLembur"></textarea>
+                        <input type="date" class="form-control" name="tanggal" id="TanggalLembur" required>
                     </div>
                     <div class="form-group">
                         <label for="JamMulai">Jam Mulai:</label>
-                        <input type="time" class="form-control" name="JamMulai" id="JamMulai" />
+                        <input type="time" class="form-control" name="mulai" id="JamMulai" required>
                     </div>
                     <div class="form-group">
                         <label for="JamSelesai">Jam Selesai:</label>
-                        <input type="time" class="form-control" name="JamSelesai" id="JamSelesai" />
+                        <input type="time" class="form-control" name="selesai" id="JamSelesai" required>
                     </div>
-                </form>
-            </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" style="background-color:#3c8dbc"; name="submitcuti" data-toggle="modal" data-target="#submitcuti">Submit</button>
             </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" style="background-color:#3c8dbc">Submit</button>
+            </div>
+            </form>
         </div>
     </div>
 </div>
+
+{{-- <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+    <button type="button" class="btn btn-primary" style="background-color:#3c8dbc"; name="submitcuti" data-toggle="modal" data-target="#submitcuti">Submit</button>
+</div> --}}
 
 @stop
 

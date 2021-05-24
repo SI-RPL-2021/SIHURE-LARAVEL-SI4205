@@ -19,25 +19,31 @@ Route::get('/karyawan/gaji', [karyawanController::class, 'gaji']);
 Route::post('/karyawan/todo', [karyawanController::class, 'todo']);
 Route::get('/karyawan/absenpulang', [karyawanController::class, 'absenPulang']);
 Route::post('/karyawan/tabel', [karyawanController::class, 'buattabel']);
-Route::get('/karyawan/profile', [karyawanController::class, 'profile']);
+
 
 //hr
 Route::get('/hr/absensi', [hrController::class, 'absensi']);
 Route::get('/hr/cuti', [hrController::class, 'cuti'])->name('hrcuti');
 Route::get('/hr/karyawan', [hrController::class, 'karyawan']);
 Route::get('/hr/lembur', [hrController::class, 'lembur']);
+Route::get('/hr/lembur/{id}', [hrController::class, 'lembur_id']);
 Route::get('/hr/penggajian', [hrController::class, 'penggajian']);
 Route::post('/hr/approvecuti', [hrController::class, 'approve']);
 Route::get('/hr/jatahcuti', [hrController::class, 'jatahcuti'])->name('jatahcuti');
 Route::post('/hr/jatahcuti/{id}', [hrController::class, 'jatahcutiupdate']);
 
+
 //admin
 Route::get('/admin/profile', [adminController::class, 'profile']);
-Route::get('/admin/cuti', [adminController::class, 'cuti']);
+Route::get('/admin/cuti', [adminController::class, 'cuti'])->name('admincuti');
 Route::get('/admin/lembur', [adminController::class, 'lembur'])->name('adminlembur');
 Route::get('/admin/karyawan', [adminController::class, 'karyawan']);
 Route::post('/admin/approve/lembur', [adminController::class, 'approve']);
 Route::post('/admin/lembur/insert', [adminController::class, 'lemburinsert']);
+Route::get('/admin/lembur/lihat', [adminController::class, 'lemburlihat']);
+Route::post('/admin/approvecuti', [adminController::class, 'approvecuti']);
+
+Route::get('/profile', [karyawanController::class, 'profile']);
 
 Auth::routes();
 

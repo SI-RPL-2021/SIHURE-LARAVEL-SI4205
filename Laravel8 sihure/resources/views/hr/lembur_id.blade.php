@@ -1,11 +1,11 @@
 @extends('tampilan.test')
 
 
-@section('title', 'karyawan')
+@section('title', 'hr')
 
 @section('content')
     <h6 style="text-align:right;color:#525A63;"><span id="tanggal"></span></h6>
-    <h6 style="text-align:right;color:#525A63"><span id="waktu"></span></h6>
+    <h6 style="text-align:right;color:#525A63;"><span id="waktu"></span></h6>
     <script>
         var tw = new Date();
         if (tw.getTimezoneOffset() == 0)(a = tw.getTime() + (7 * 60 * 60 * 1000))
@@ -26,42 +26,52 @@
 
     </script>
     <br>
-    <h2 style='text-align:center; color:#525A63; font-family:Open Sans,Arial,sans-serif; font-size:40px; font-weight: 500;'>
-        Status Karyawan</h2>
+
+    <h1 style='text-align:center; color:#525A63; font-family:Open Sans,Arial,sans-serif; font-size:40px; font-weight: 500;'>
+        LEMBUR</h1>
+    <br>
+    <br>
+    <!-- Table -->
 
     <div class="container">
         <div class="row">
             <div class="col-12">
-
+                <P>nama : {{ $data2->name }}</p>
                 <table class="table table-bordered">
                     <!-- Header Table -->
-                    <thead style="background-color:#5882B7;color:white;">
-                        <tr>
-                            <th style="text-align:center;">No.</th>
-                            <th style="text-align:center;">Nama</th>
-                            <th style="text-align:center;">No hp</th>
-                            <th style="text-align:center;">Email</th>
-                            <th style="text-align:center;">Status</th>
-
+                    <thead style="background: #5882B7;">
+                        <tr style="color: white;">
+                            <th scope="col">No</th>
+                            <th scope="col">Tanggal</th>
+                            <th scope="col">Jumlah jam</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">keterangan</th>
                         </tr>
                     </thead>
+
                     <!-- Konten Table -->
+
                     <tbody>
 
                         <?php $no = 1; ?>
                         @foreach ($data as $data)
                             <tr>
                                 <td>{{ $no++ }}</td>
-                                <td>{{ $data->name }}</td>
-                                <td>{{ $data->no_telp }}</td>
-                                <td>{{ $data->email }}</td>
+                                <td>{{ $data->tanggal }}</td>
+                                <td>{{ $data->jumlah_jam }}</td>
                                 <td>
-                                    @if ($data->status == 'online')
-                                        <p style="color: green;"> {{ $data->status }} </p>
-                                    @else
-                                        <p style="color: red;"> {{ $data->status }} </p>
+                                    @if ($data->status == 1)
+                                        <button
+                                            class="btn btn-success  animate__animated animate__bounceIn">Approved</button>
+                                    @elseif ( $data->status == 2 )
+                                        <button class="btn btn-danger  animate__animated animate__bounceIn">Not
+                                            Approve</button>
+                                    @elseif ( $data->status == 0 )
+                                        <button
+                                            class="btn btn-warning  animate__animated animate__bounceIn">Pending</button>
                                     @endif
                                 </td>
+                                <td>{{ $data->keterangan }}</td>
                             </tr>
                         @endforeach
 

@@ -24,7 +24,7 @@ class CreateCutiTable extends Migration
             $table->date('tanggal_selesai')->nullable();
             $table->date('jumlah_hari')->nullable();
             $table->integer('total_cuti')->nullable();
-            $table->integer('status->nullable()')->nullable();
+            $table->integer('status')->nullable();
 
             $table->foreign('id_users')->references('id')->on('users');
             $table->foreign('id_jenis_cuti')->references('id')->on('jenis_cuti');

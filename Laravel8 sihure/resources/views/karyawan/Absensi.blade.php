@@ -54,7 +54,7 @@
                                             <h2></h2>
                                         @else
                                             <a type="button" href="/karyawan/absenpulang" class="btn btn-bg btn-primary"
-                                                style="width: 300px">
+                                            style="background-color:white; width: 300px; height: 45px;color:#343a40">
                                                 Absen Pulang </a>
                                         @endif
 

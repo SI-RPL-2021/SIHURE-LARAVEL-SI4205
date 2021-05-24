@@ -7,39 +7,89 @@ use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+
 class karyawanController extends Controller
 {
 
     public function __construct()
-{
-    $this->middleware('auth');
-}
+    {
+        $this->middleware('auth');
+    }
 
+    //profile
+    public function profile()
+    {
+        $user_id = auth()->user()->id;
+        $data1 = DB::table("users")->where("id", $user_id)->get();
+
+        $data = $data1[0];
+
+        return view('profile', ["data" => $data]);
+    }
+
+    //Cuti
     public function cuti()
     {
 
         $user_id = auth()->user()->id;
+        // $user_id = 1;
 
-        $data1 = DB::select("SELECT sum(jumlah_hari) as jumlah_hari, id_users FROM `cuti` WHERE STATUS
-        not in (0,2) and id_users = ".$user_id." group by id_user");
+        $data1 = DB::select("SELECT sum(jumlahhari) as jumlahhari, id_user FROM `cuti` WHERE STATUS
+        not in (0,2) and id_user = " . $user_id . " group by id_user");
         $data2 = $data1[0];
+        // if ( $data1) {
+        //     $data2 = $data1[0];
+        // } else {
+        //     $data2 = [];
+        // }
 
         $data3 = DB::table("cuti")
-                ->where("id_user", $user_id)
-                ->get();
+            ->where("id_user", $user_id)
+            ->get();
 
-        return view('karyawan.cuti', ["test" => $data2],["data" => $data3] );
-
-        // return view('karyawan.cuti');
+        return view('karyawan.cuti', ["test" => $data2], ["data" => $data3]);
     }
 
+    public function buattabel(Request $request)
+    {
+
+        $diff = Carbon::parse($request->mulai)->diffInDays($request->akhir);
+
+        $user_name = auth()->user()->name;
+        $user_id = auth()->user()->id;
+
+        DB::table("cuti")
+            ->insert([
+
+
+                "id_user" => $user_id,
+                "status" => $request->status,
+                "nama" => $request->name,
+                "alasan" => $request->alasan,
+                "jumlahhari" => $diff * -1,
+                "tanggalmulai" => $request->mulai,
+                "tanggalberakhir" => $request->akhir,
+
+            ]);
+
+        DB::table("users")
+            ->where("id", $user_id)
+            ->update([
+                "jumlahcuti" => $request->jumlahcuti,
+            ]);
+
+
+        return redirect()->route('cuti')->with('pesan', 'data berhasil ditambahkan');
+    }
+
+    //Absensi
     public function absensi()
     {
         $user_id = auth()->user()->id;
 
         date_default_timezone_set('Asia/Jakarta');
         $now = date('Y-m-d');
-        $absen_karyawan = DB::select("select  * from absensi where id_users = $user_id
+        $absen_karyawan = DB::select("select  * from todo where id_user = $user_id
             and jam_masuk between '" . $now . " 00:00:00' and '" . $now . " 23:59:59'  order by jam_masuk desc limit 1");
         if ($absen_karyawan) {
             $absen = $absen_karyawan[0];
@@ -54,46 +104,27 @@ class karyawanController extends Controller
         // return view('karyawan.absensi');
     }
 
-    public function lemburinsert(Request $request)
-    {
-
-
-
-    return redirect()->route('lembur')->with('pesan', 'data lembur berhasil ditambahkan');
-
-    }
-
-    public function lembur()
-    {
-        return view('karyawan.lembur');
-    }
-
-    public function karyawan()
-    {
-
-        return view('karyawan.karyawan');
-    }
-
-    public function gaji()
-    {
-
-        return view('karyawan.gaji');
-    }
-
     public function todo(Request $request)
     {
         date_default_timezone_set('Asia/Jakarta');
 
         $now = date('Y-m-d H:i:s');
-        $user_id = auth()->user()->id;
-        $user_name = auth()->user()->name;
 
-        DB::table("absensi")
+        $user_id = auth()->user()->id;
+        $name = auth()->user()->name;
+
+        DB::table("todo")
             ->insert([
-                "id_users" => $user_id,
+                "id_user" => $user_id,
                 "todo" => $request->todo_kegiatan,
                 "jam_masuk" => $now,
+                "nama" => $name,
+            ]);
 
+        DB::table("users")
+            ->where("id", $user_id)
+            ->update([
+                "status" => 'online',
             ]);
 
         // $this->testModels->addData($data);
@@ -106,35 +137,76 @@ class karyawanController extends Controller
         $user_id = auth()->user()->id;
 
         $now = date('Y-m-d H:i:s');
-        DB::table("absensi")
-            ->where("id_users", $user_id)
+        DB::table("todo")
+            ->where("id_user", $user_id)
             ->update([
                 "jam_keluar" => $now
+            ]);
+
+        DB::table("users")
+            ->where("id", $user_id)
+            ->update([
+                "status" => 'offline',
             ]);
         return redirect()->route('absensi')->with('pesan', 'data berhasil ditambahkan');
     }
 
-    public function buattabel(Request $request)
+    //Lembur
+    public function lemburinsert(Request $request)
     {
 
-        $diff = Carbon::parse($request->mulai)->diffInDays($request->akhir);
+        // $waktu_awal        = strtotime ('2019-02-25 $request->mulai');
+        // $waktu_akhir    = strtotime ('2019-02-26 $request->selesai');
 
-          DB::table("cuti")
+        $waktu_awal        = strtotime("2019-10-11 $request->mulai");
+        $waktu_akhir    = strtotime("2019-10-11 $request->selesai");
+
+        $diff    = $waktu_akhir - $waktu_awal;
+        $jam    = floor($diff / (60 * 60));
+        $menit    = $diff - $jam * (60 * 60);
+
+
+        DB::table("lembur")
             ->insert([
-
-                "id_user" => $request->iduser,
+                "jumlah_jam" => $jam,
+                "jam_mulai" => $request->mulai,
+                "jam_selesai" => $request->selesai,
+                "tanggal" => $request->tanggal,
+                "nama" => auth()->user()->name,
                 "status" => $request->status,
-                "nip" => $request->nip,
-                "alasan" => $request->alasan,
-                "jumlahhari" => $diff * -1 ,
-                "tanggalmulai" => $request->mulai,
-                "tanggalberakhir" => $request->akhir,
-                "nama" => 'adli',
+                "id_user" => auth()->user()->id,
 
             ]);
 
-
-        return redirect()->route('cuti')->with('pesan', 'data berhasil ditambahkan');
+        return redirect()->route('lembur')->with('pesan', 'data lembur berhasil ditambahkan');
     }
 
+    public function lembur()
+    {
+
+        $user_id = auth()->user()->id;
+
+        $data1 =  DB::table("lembur")
+            ->where("id_user", $user_id)
+            ->get();
+
+        return view('karyawan.lembur', ['data_all' => $data1]);
+    }
+
+
+    //karyawan
+    public function karyawan()
+    {
+
+        $data1 =  DB::table("users")
+            ->where("divisi", 'karyawan')
+            ->get();
+
+        return view('karyawan.karyawan', ['data' => $data1]);
+    }
+
+    public function gaji()
+    {
+        return view('karyawan.gaji');
+    }
 }

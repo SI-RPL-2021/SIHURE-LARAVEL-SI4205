@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 
-<?php
-
-$divisi = Auth::user()->divisi ;
-
-?>
+<?php $divisi = Auth::user()->divisi; ?>
 
 <html lang="en">
 
@@ -20,10 +16,7 @@ $divisi = Auth::user()->divisi ;
     <link rel="stylesheet" href="/adminLTE/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/adminLTE/dist/css/adminlte.min.css">
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -34,7 +27,7 @@ $divisi = Auth::user()->divisi ;
         <nav class="main-header navbar navbar-expand navbar-light" style="background-color: #C0CEEA;">
             <!-- Left navbar links -->
 
-           <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
@@ -83,14 +76,15 @@ $divisi = Auth::user()->divisi ;
                 </li> -->
 
                 <li class="nav-item">
-                <div class="user-panel d-flex">
-                <div class="image">
-                        <img src="{{ '/foto/3.png' }}" class="img-circle elevation-1" alt="User Image">
+                    <div class="user-panel d-flex">
+                        <div class="image">
+                            <img src="{{ '/foto/3.png' }}" class="img-circle elevation-1" alt="User Image">
+                        </div>
+                        <div class="info">
+                            <a class="d-block"
+                                style="color:#525A63; font-weight:strong; font-size:20px;">{{ Auth::user()->name }}</a>
+                        </div>
                     </div>
-                    <div class="info">
-                        <a href="/home" class="d-block" style="color:#525A63; font-weight:strong; font-size:20px;"> SIHURE</a>
-                    </div>
-                </div>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -103,11 +97,28 @@ $divisi = Auth::user()->divisi ;
 
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href=#>
+
+                        <a class="dropdown-item" href="/profile">
                             {{ __('Profile') }}
                         </a>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
+
+                        {{-- @if ($divisi == 'karyawan')
+                        <a class="dropdown-item" href="/karyawan/profile">
+                            {{ __('Profile') }}
+                        </a>
+
+                        @elseif ( $divisi == 'hr')
+                        <a class="dropdown-item" href="/hr/profile">
+                            {{ __('Profile') }}
+                        </a>
+
+                        @elseif ( $divisi == 'admin')
+                        <a class="dropdown-item" href="/admin/profile">
+                            {{ __('Profile') }}
+                        </a>
+                        @endif --}}
+
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
@@ -162,16 +173,16 @@ $divisi = Auth::user()->divisi ;
 
             <!-- Sidebar -->
             <div class="sidebar">
-            <div class="user-panel mt-0 pb-0 mb-3 d-flex" style="font-weight: stronger; font-size:36px;">
-            <div class="image">
+                <div class="user-panel mt-0 pb-0 mb-3 d-flex" style="font-weight: stronger; font-size:36px;">
+                    <div class="image">
                         <img src="{{ '/foto/logoSIHURE.png' }}" class="img-circle " alt="User Image">
                     </div>
                     <div class="info">
                         <a href="/home" class="d-block">SIHURE</a>
                     </div>
-            </div>
+                </div>
                 <!-- Sidebar user (optional) -->
-                    <!-- <div class="user-panel mt-1 pb-3 mb-3 d-flex">
+                <!-- <div class="user-panel mt-1 pb-3 mb-3 d-flex">
                         <div class="image">
                             <img src="/adminLTE/dist/img/3.png" class="img-circle elevation-2" alt="User Image">
                         </div>
@@ -198,15 +209,15 @@ $divisi = Auth::user()->divisi ;
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
 
-                        {{-- @if ( $divisi  == 'karyawan') --}}
+                        @if ($divisi == 'karyawan')
                         <li class="nav-item">
-                            <a href="#" class="nav-link {{ request()->is('karyawan/absensi' || 'karyawan/cuti'
-                                || 'karyawan/lembur' || 'karyawan/karyawan' || 'karyawan/gaji' ) ? '' : 'active' }}">
+                            <a href="#"
+                                class="nav-link {{ request()->is('karyawan/absensi' || 'karyawan/cuti' || 'karyawan/lembur' || 'karyawan/karyawan' || 'karyawan/gaji') ? '' : 'active' }}">
                                 <p>
-                                  karyawan
-                                  <i class="right fas fa-angle-left"></i>
+                                    karyawan
+                                    <i class="right fas fa-angle-left"></i>
                                 </p>
-                              </a>
+                            </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="/karyawan/absensi"
@@ -247,7 +258,7 @@ $divisi = Auth::user()->divisi ;
                         </li>
 
 
-                        {{-- @elseif ( $divisi  == 'hr') --}}
+                        @elseif ( $divisi  == 'hr')
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <p>
@@ -257,49 +268,55 @@ $divisi = Auth::user()->divisi ;
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/hr/absensi" class="nav-link {{ request()->is('hr/absensi') ? 'active' : '' }}">
+                                    <a href="/hr/absensi"
+                                        class="nav-link {{ request()->is('hr/absensi') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Absensi</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>
-                                    Cuti
-                                </p>
-                                <i class="right fas fa-angle-left"></i>
-                            </a>
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>
+                                            Cuti
+                                        </p>
+                                        <i class="right fas fa-angle-left"></i>
+                                    </a>
                                     <ul class="nav nav-treeview">
-                                    <li class="nav-item ml-4">
-                                    <a href="/hr/jatahcuti" class="nav-link {{ request()->is('hr/jatahcuti') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Jatah Cuti</p>
-                                    </a>
-                                    </li>
-                                    <li class="nav-item ml-4">
-                                    <a href="/hr/cuti" class="nav-link {{ request()->is('hr/cuti') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Status Cuti</p>
-                                    </a>
-                                    </li>
+                                        <li class="nav-item ml-4">
+                                            <a href="/hr/jatahcuti"
+                                                class="nav-link {{ request()->is('hr/jatahcuti') ? 'active' : '' }}">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Jatah Cuti</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item ml-4">
+                                            <a href="/hr/cuti"
+                                                class="nav-link {{ request()->is('hr/cuti') ? 'active' : '' }}">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Status Cuti</p>
+                                            </a>
+                                        </li>
 
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/hr/karyawan" class="nav-link {{ request()->is('hr/karyawan') ? 'active' : '' }}">
+                                    <a href="/hr/karyawan"
+                                        class="nav-link {{ request()->is('hr/karyawan') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Karyawan</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/hr/lembur" class="nav-link {{ request()->is('hr/lembur') ? 'active' : '' }}">
+                                    <a href="/hr/lembur"
+                                        class="nav-link {{ request()->is('hr/lembur') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Lembur</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/hr/penggajian" class="nav-link {{ request()->is('hr/penggajian') ? 'active' : '' }}">
+                                    <a href="/hr/penggajian"
+                                        class="nav-link {{ request()->is('hr/penggajian') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Penggajian</p>
                                     </a>
@@ -307,7 +324,7 @@ $divisi = Auth::user()->divisi ;
                             </ul>
                         </li>
 
-                        {{-- @elseif ( $divisi  == 'admin') --}}
+                        @elseif ( $divisi  == 'admin')
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <p>
@@ -317,32 +334,36 @@ $divisi = Auth::user()->divisi ;
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/admin/profile" class="nav-link {{ request()->is('admin/profile') ? 'active' : '' }}">
+                                    <a href="/profile"
+                                        class="nav-link {{ request()->is('/profile') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Profile</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/cuti" class="nav-link {{ request()->is('admin/cuti') ? 'active' : '' }}">
+                                    <a href="/admin/cuti"
+                                        class="nav-link {{ request()->is('admin/cuti') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Cuti Karyawan</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/lembur" class="nav-link {{ request()->is('admin/lembur') ? 'active' : '' }}">
+                                    <a href="/admin/lembur"
+                                        class="nav-link {{ request()->is('admin/lembur') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Lembur</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/karyawan" class="nav-link {{ request()->is('admin/karyawan') ? 'active' : '' }}">
+                                    <a href="/admin/karyawan"
+                                        class="nav-link {{ request()->is('admin/karyawan') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Karyawan</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        {{-- @endif --}}
+                        @endif
 
 
                     </ul>
@@ -366,7 +387,7 @@ $divisi = Auth::user()->divisi ;
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-<!--
+        <!--
         <footer class="main-footer">
             <div class="float-right d-none d-sm-block">
                 <b>Version</b> 3.1.0
