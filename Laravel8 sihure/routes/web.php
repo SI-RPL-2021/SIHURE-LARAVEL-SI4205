@@ -44,6 +44,7 @@ Route::get('/admin/lembur/lihat', [adminController::class, 'lemburlihat']);
 Route::post('/admin/approvecuti', [adminController::class, 'approvecuti']);
 
 Route::get('/profile', [karyawanController::class, 'profile']);
+Route::get('/start', [karyawanController::class, 'starter']);
 
 Auth::routes();
 

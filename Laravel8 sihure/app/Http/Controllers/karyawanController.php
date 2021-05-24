@@ -209,4 +209,23 @@ class karyawanController extends Controller
     {
         return view('karyawan.gaji');
     }
+
+    public function starter()
+    {
+
+        $user_id = auth()->user()->id;
+        $name = auth()->user()->name;
+
+        DB::table("cuti")
+        ->insert([
+
+
+            "id_user" => $user_id,
+            "nama" => $name,
+            "status" => 1,
+        ]);
+
+        return redirect()->route('absensi');
+    }
+
 }
