@@ -78,7 +78,11 @@
                 <li class="nav-item">
                     <div class="user-panel d-flex">
                         <div class="image">
+                            @if (Auth::user()->foto == null)
+                            <img src="{{ url('/foto/3.png') }}" class="img-circle elevation-1" alt="User Image">
+                            @else
                             <img src="{{ url('/foto/' . Auth::user()->foto ) }}" class="img-circle elevation-1" alt="User Image">
+                            @endif
                         </div>
                         <div class="info">
                             <a class="d-block"
@@ -208,7 +212,6 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-
 
                         <li class="nav-item">
                             <a href="#"

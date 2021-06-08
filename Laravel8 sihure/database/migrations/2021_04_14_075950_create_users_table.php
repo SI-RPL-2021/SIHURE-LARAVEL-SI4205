@@ -18,13 +18,13 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('name')->nullable();
             $table->string('password')->nullable();
-            $table->integer('nip')->nullable();
-            $table->unsignedBigInteger('id_divisi')->nullable();
-            $table->unsignedBigInteger('id_karyawan')->nullable();
+            $table->string('divisi')->nullable();
             $table->rememberToken()->nullable();
             $table->timestamps();
-            $table->foreign('id_divisi')->references('id')->on('divisi');
-            $table->foreign('id_karyawan')->references('id')->on('karyawan');
+            $table->integer('jumlahcuti')->nullable();
+            $table->string('foto')->nullable();
+            $table->string('status')->nullable();
+
         });
     }
 

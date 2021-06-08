@@ -14,13 +14,21 @@
 
                 <div class="row">
                     <div class="col-sm">
+
+                        @if ($data->foto == null)
+                        <img src="{{ url('/foto/3.png') }}" style="margin-left: 57px" width="120" height="120"
+                            class="d-inline-block align-top" alt="" loading="lazy">
+                        @else
                         <img src="{{ url('/foto/' . $data->foto) }}" style="margin-left: 57px" width="120" height="120"
                             class="d-inline-block align-top" alt="" loading="lazy">
+                        @endif
+
+
                     </div>
 
                     <div class="col-sm-9">
 
-                        @if ($data->status = "online")
+                        @if ($data->status == "online")
                             <p style="color: green; font-size :20px"> {{ $data->status }} </p>
                         @else
                             <p style="color: red; font-size :20px"> {{ $data->status }} </p>
