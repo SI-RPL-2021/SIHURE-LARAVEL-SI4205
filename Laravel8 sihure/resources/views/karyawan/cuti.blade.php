@@ -26,9 +26,8 @@
 
     </script>
     <br>
-    <h2 style='text-align:center; color:#525A63; font-family:Open Sans,Arial,sans-serif; font-size:40px; font-weight: 500;'>
-        AJUKAN CUTI</h2>
-    <h2 style='text-align:center; color:#525A63; font-family:Open Sans,Arial,sans-serif; font-size:20px; font-weight: 500;'>
+    <h2 style='text-align:center; color:#525A63; font-family:Open Sans,Arial,sans-serif; font-size:36px; font-weight: 400;'><strong>AJUKAN CUTI</strong></h2>
+    <h2 style='text-align:center; color:#525A63; font-family:Open Sans,Arial,sans-serif; font-size:16px; font-weight: 500;'>
         Jatah Cuti : @if ($test->jumlahhari <= 0)
             <p>
                 Jatah telah habis
@@ -46,16 +45,16 @@
             <div class="col-12">
 
                 @if ($test->jumlahhari <= 0)
-                <button type="button" class="btn float-left" style="background-color:red; color:white;" name="addcuti"
-                data-toggle="modal"">Ajukan Cuti</button> <br>
+                <button type="button" class="btn float-left" style="background-color:#5882B7; color:white; border-radius: 22px" name="addcuti"
+                data-toggle="modal">Ajukan Cuti</button> <br>
                 @else ()
-                <button type="button" class="btn float-left" style="background-color:#5882B7; color:white;" name="addcuti"
+                <button type="button" class="btn float-left" style="background-color:#5882B7; color:white; border-radius:22px" name="addcuti"
                     data-toggle="modal" data-target="#addcuti">Ajukan Cuti</button> <br>
                 @endif
                 <br>
-                <table class="table table-bordered">
+                <table class="table" style="border-radius:25px; box-shadow: -4px 5px 10px #84868A;">
                     <!-- Header Table -->
-                    <thead style="background-color:#5882B7;color:white;">
+                    <thead style="background-color:#93a7cf;color:white;">
                         <tr>
                             <th style="text-align:center;">No.</th>
                             <th style="text-align:center;">Jumlah Hari</th>
@@ -85,26 +84,25 @@
                                         {{ $data->jumlahhari }} Hari</td>
                                 @endif
 
-                                <td>{{ $data->tanggalmulai }}</td>
-                                <td>{{ $data->tanggalberakhir }}</td>
-                                <td>
+                                <td style="text-align:center;">{{ $data->tanggalmulai }}</td>
+                                <td style="text-align:center;">{{ $data->tanggalberakhir }}</td>
+                                <td style="text-align:center;">
                                     @if ($data->status == 1)
-                                        <button
-                                            class="btn btn-success  animate__animated animate__bounceIn">Approved</button>
+                                        <button class="btn btn-success  animate__animated animate__bounceIn" style="border-radius:22px">Approved</button>
                                     @elseif ( $data->status == 2 )
-                                        <button class="btn btn-danger  animate__animated animate__bounceIn">Not
+                                        <button class="btn btn-danger  animate__animated animate__bounceIn" style="border-radius:22px">Not
                                             Approve</button>
                                     @elseif ( $data->status == 0 )
                                         <button
-                                            class="btn btn-warning  animate__animated animate__bounceIn">Pending</button>
+                                            class="btn btn-warning  animate__animated animate__bounceIn" style="border-radius:22px">Pending</button>
                                     @elseif ( $data->status == 3 )
                                         <button
-                                            class="btn btn-sm btn-secondary  animate__animated animate__bounceIn">Penambahan
+                                            class="btn btn-secondary  animate__animated animate__bounceIn" style="border-radius:22px">Penambahan
                                             cuti</button>
                                     @endif
 
                                 </td>
-                                <td>{{ $data->alasan }}</td>
+                                <td style="text-align:center;">{{ $data->alasan }}</td>
 
                             </tr>
                         @endforeach

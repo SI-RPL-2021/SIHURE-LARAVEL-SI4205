@@ -26,16 +26,15 @@
 
     </script>
     <br>
-    <h2 style='text-align:center; color:#525A63; font-family:Open Sans,Arial,sans-serif; font-size:40px; font-weight: 500;'>
-        Status Karyawan</h2>
-
+    <h2 style='text-align:center; color:#525A63; font-family:Open Sans,Arial,sans-serif; font-size:36px; font-weight: 400;'><strong>STATUS KARYAWAN</strong></h2>
+    <br>
     <div class="container">
         <div class="row">
             <div class="col-12">
 
-                <table class="table table-bordered">
+                <table class="table" style="border-radius:25px; box-shadow: -4px 5px 10px #84868A;">
                     <!-- Header Table -->
-                    <thead style="background-color:#5882B7;color:white;">
+                    <thead style="background-color:#93a7cf;color:white;">
                         <tr>
                             <th style="text-align:center;">No.</th>
                             <th style="text-align:center;">Nama</th>
@@ -51,11 +50,11 @@
                         <?php $no = 1; ?>
                         @foreach ($data as $data)
                             <tr>
-                                <td>{{ $no++ }}</td>
-                                <td>{{ $data->name }}</td>
-                                <td>{{ $data->no_telp }}</td>
-                                <td>{{ $data->email }}</td>
-                                <td>
+                                <td style="text-align:center;">{{ $no++ }}</td>
+                                <td style="text-align:center;">{{ $data->name }}</td>
+                                <td style="text-align:center;">{{ $data->no_telp }}</td>
+                                <td style="text-align:center;">{{ $data->email }}</td>
+                                <td style="text-align:center;">
                                     @if ($data->status == 'online')
                                         <p style="color: green;"> {{ $data->status }} </p>
                                     @else

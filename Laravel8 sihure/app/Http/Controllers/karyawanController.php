@@ -246,4 +246,8 @@ class karyawanController extends Controller
         return redirect()->route('absensi');
     }
 
+    public function viewgaji() {
+        return view('karyawan.viewgaji');
+    }
+
 }

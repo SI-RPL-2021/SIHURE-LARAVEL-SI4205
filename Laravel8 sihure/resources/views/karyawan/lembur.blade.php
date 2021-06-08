@@ -23,7 +23,7 @@
     document.getElementById("waktu").innerHTML = dt.toLocaleTimeString();
 </script>
 <br>
-<h2 style='text-align:center; color:#525A63; font-family:Open Sans,Arial,sans-serif; font-size:40px; font-weight: 500;'>AJUKAN LEMBUR</h2>
+<h2 style='text-align:center; color:#525A63; font-family:Open Sans,Arial,sans-serif; font-size:36px; font-weight: 400;'><strong>LEMBUR</strong></h2>
 
 {{-- <p>Welcome to SIHURE</p> --}}
 
@@ -32,11 +32,11 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <button type="button" class="btn float-left" style="background-color:#5882B7; color:white;" name="addlembur" data-toggle="modal" data-target="#addlembur">Ajukan Lembur</button> <br>
+            <button type="button" class="btn float-left" style="background-color:#5882B7; color:white; border-radius: 22px;" name="addlembur" data-toggle="modal" data-target="#addlembur">Ajukan Lembur</button> <br>
             <br>
-            <table class="table table-bordered">
+            <table class="table" style="border-radius:25px; box-shadow: -4px 5px 10px #84868A;">
                 <!-- Header Table -->
-                <thead style="background-color:#5882B7;color:white;">
+                <thead style="background-color:#93a7cf;color:white;">
                     <tr>
                         <th style="text-align:center;">No.</th>
                         <th style="text-align:center;">Jumlah Jam</th>
@@ -52,19 +52,19 @@
                     <?php $no = 1; ?>
                         @foreach ($data_all as $data)
                             <tr>
-                                <td>{{ $no++ }}</td>
-                                <td>{{ $data->jumlah_jam }} Jam</td>
-                                <td>{{ $data->jam_mulai }}</td>
-                                <td>{{ $data->jam_selesai }}</td>
-                                <td>{{ $data->tanggal }}</td>
-                                <td>
+                                <td style="text-align:center;">{{ $no++ }}</td>
+                                <td style="text-align:center;">{{ $data->jumlah_jam }} Jam</td>
+                                <td style="text-align:center;">{{ $data->jam_mulai }}</td>
+                                <td style="text-align:center;">{{ $data->jam_selesai }}</td>
+                                <td style="text-align:center;">{{ $data->tanggal }}</td>
+                                <td style="text-align:center;">
 
                                     @if ($data->status == 1)
-                                    <button class="btn btn-success  animate__animated animate__bounceIn">Approved</button>
+                                    <button class="btn btn-success  animate__animated animate__bounceIn" style="border-radius: 22px;">Approved</button>
                                 @elseif ( $data->status == 2 )
-                                    <button class="btn btn-danger  animate__animated animate__bounceIn">Not Approve</button>
+                                    <button class="btn btn-danger  animate__animated animate__bounceIn" style="border-radius: 22px;">Not Approve</button>
                                 @elseif ( $data->status == 0 )
-                                    <button class="btn btn-warning  animate__animated animate__bounceIn">Pending</button>
+                                    <button class="btn btn-warning  animate__animated animate__bounceIn" style="border-radius: 22px;">Pending</button>
                                 @endif
 
                                 </td>

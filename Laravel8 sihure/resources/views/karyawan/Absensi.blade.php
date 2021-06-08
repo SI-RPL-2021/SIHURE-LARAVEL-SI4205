@@ -26,8 +26,7 @@
 
     </script>
     <br>
-    <h2 style='text-align:center; color:#525A63; font-family:Open Sans,Arial,sans-serif; font-size:40px; font-weight: 500;'>
-        ABSENSI</h2>
+    <h2 style='text-align:center; color:#525A63; font-family:Open Sans,Arial,sans-serif; font-size:36px; font-weight: 400;'><strong>ABSENSI</strong></h2>
 
     {{-- <p>Welcome to SIHURE</p> --}}
 
@@ -38,7 +37,7 @@
                     <div class="col">
                         <div style="width: 500px; " class="card text-center">
                             <div class="card text-center">
-                                <div style="background-color:#5882B7;" class="card-body">
+                                <div style="background-color:#93a7cf;" class="card-body">
                                     <h5 class="card-text">Nama : {{ Auth::user()->name }} </h5>
                                     <p class="card-text">NIP : {{ Auth::user()->nip }}</p>
 
@@ -54,12 +53,12 @@
                                             <h2></h2>
                                         @else
                                             <a type="button" href="/karyawan/absenpulang" class="btn btn-bg btn-primary"
-                                            style="background-color:white; width: 300px; height: 45px;color:#343a40">
+                                            style="background-color:#5882B7; width: 300px; height: 45px; color:white; border-radius: 22px">
                                                 Absen Pulang </a>
                                         @endif
 
                                     @else
-                                        <button type="button" class="btn btn-bg btn-secondary" style="background-color:white; width: 300px; height: 45px;color:#343a40"
+                                        <button type="button" class="btn btn-bg btn-secondary" style="background-color:#5882B7; width: 300px; height: 45px; color:white; border-radius: 22px"
                                             data-toggle="modal" data-target="#todo">
                                             Absen Masuk
                                         </button>
