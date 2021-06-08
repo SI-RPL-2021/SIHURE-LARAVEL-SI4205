@@ -4,81 +4,59 @@
 @section('title', 'hr')
 
 @section('content')
-    <h6 style="text-align:right;color:#525A63;"><span id="tanggal"></span></h6>
-    <h6 style="text-align:right;color:#525A63;"><span id="waktu"></span></h6>
-    <script>
-        var tw = new Date();
-        if (tw.getTimezoneOffset() == 0)(a = tw.getTime() + (7 * 60 * 60 * 1000))
-        else(a = tw.getTime());
-        tw.setTime(a);
-        var tahun = tw.getFullYear();
-        var hari = tw.getDay();
-        var bulan = tw.getMonth();
-        var tanggal = tw.getDate();
-        var hariarray = new Array("Minggu,", "Senin,", "Selasa,", "Rabu,", "Kamis,", "Jum'at,", "Sabtu,");
-        var bulanarray = new Array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September",
-            "Oktober", "Nopember", "Desember");
-        document.getElementById("tanggal").innerHTML = hariarray[hari] + " " + tanggal + " " + bulanarray[bulan] + " " +
-            tahun;
+<h1 style='text-align:center; color:#525A63; font-family:Open Sans,Arial,sans-serif; font-size:36px; font-weight: 500;'>
+    <strong>DATA LEMBUR</strong>
+</h1>
+<p style="text-align: center; font-size:16px;">nama : {{ $data2->name }}</p>
+<br>
+<!-- Table -->
 
-        var dt = new Date();
-        document.getElementById("waktu").innerHTML = dt.toLocaleTimeString();
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+        <table class="table" style="border-radius:25px; box-shadow: -4px 5px 10px #84868A;">
+                <!-- Header Table -->
+                <thead style="background:  #93A7CF;">
+                    <tr style="color:white;">
+                        <th style="text-align:left;">No</th>
+                        <th style="text-align:center;">Tanggal</th>
+                        <th style="text-align:center;">Jumlah jam</th>
+                        <th style="text-align:center;">Status</th>
+                        <th style="text-align:center;">Keterangan</th>
+                    </tr>
+                </thead>
 
-    </script>
-    <br>
+                <!-- Konten Table -->
 
-    <h1 style='text-align:center; color:#525A63; font-family:Open Sans,Arial,sans-serif; font-size:40px; font-weight: 500;'>
-        LEMBUR</h1>
-    <br>
-    <br>
-    <!-- Table -->
+                <tbody>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <P>nama : {{ $data2->name }}</p>
-                <table class="table table-bordered">
-                    <!-- Header Table -->
-                    <thead style="background: #5882B7;">
-                        <tr style="color: white;">
-                            <th scope="col">No</th>
-                            <th scope="col">Tanggal</th>
-                            <th scope="col">Jumlah jam</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">keterangan</th>
-                        </tr>
-                    </thead>
+                    <?php $no = 1; ?>
+                    @foreach ($data as $data)
+                    <tr>
+                        <td>{{ $no++ }}</td>
+                        <td style="text-align:center;">{{ $data->tanggal }}</td>
+                        <td style="text-align:center;">{{ $data->jumlah_jam }}</td>
+                        <td style="text-align:center;">
+                            @if ($data->status == 1)
+                            <button class="btn btn-success  animate__animated animate__bounceIn" 
+                            style="border-radius: 22px; height:40px; width: 100px; font-size:16px;"><strong> Approved </strong></button>
+                            @elseif ( $data->status == 2 )
+                            <button class="btn btn-danger  animate__animated animate__bounceIn"
+                            style="border-radius: 22px; height:40px; width: 100px; font-size:16px;"><strong> Not
+                                Approve </strong></button>
+                            @elseif ( $data->status == 0 )
+                            <button class="btn btn-warning  animate__animated animate__bounceIn"
+                            style="border-radius: 22px; height:40px; width: 100px; font-size:16px;"><strong>Pending</strong></button>
+                            @endif
+                        </td>
+                        <td style="text-align:center;">{{ $data->keterangan }}</td>
+                    </tr>
+                    @endforeach
 
-                    <!-- Konten Table -->
-
-                    <tbody>
-
-                        <?php $no = 1; ?>
-                        @foreach ($data as $data)
-                            <tr>
-                                <td>{{ $no++ }}</td>
-                                <td>{{ $data->tanggal }}</td>
-                                <td>{{ $data->jumlah_jam }}</td>
-                                <td>
-                                    @if ($data->status == 1)
-                                        <button
-                                            class="btn btn-success  animate__animated animate__bounceIn">Approved</button>
-                                    @elseif ( $data->status == 2 )
-                                        <button class="btn btn-danger  animate__animated animate__bounceIn">Not
-                                            Approve</button>
-                                    @elseif ( $data->status == 0 )
-                                        <button
-                                            class="btn btn-warning  animate__animated animate__bounceIn">Pending</button>
-                                    @endif
-                                </td>
-                                <td>{{ $data->keterangan }}</td>
-                            </tr>
-                        @endforeach
-
-                    </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 
 @endsection

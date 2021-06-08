@@ -54,29 +54,16 @@ class hrController extends Controller
 
     public function karyawan()
     {
-
-        // mengambil data dari table pegawai
-		$pegawai = DB::table('todo')->paginate(10);
-
-        // mengirim data pegawai ke view index
-    return view('hr.karyawan',['pegawai' => $pegawai]);
-
+        return view('hr.karyawan');
     }
-
-    public function cari(Request $request)
-	{
-		// menangkap data pencarian
-		$cari = $request->cari;
-
-    		// mengambil data dari table pegawai sesuai pencarian data
-		$pegawai = DB::table('todo')
-		->where('nama','like',"%".$cari."%")
-		->paginate();
-
-    		// mengirim data pegawai ke view index
-		return view('hr.karyawan',['pegawai' => $pegawai]);
-
-	}
+    public function editkaryawan()
+    {
+        return view('hr.editkaryawan');
+    }
+    public function addKaryawan()
+    {
+        return view('hr.addKaryawan');
+    }
 
     public function lembur()
     {
@@ -113,6 +100,19 @@ class hrController extends Controller
     public function penggajian()
     {
         return view('hr.penggajian');
+    }
+    public function editGaji()
+    {
+        return view('hr.editGaji');
+    }
+    public function masterdataGaji()
+    {
+        return view('hr.masterdataGaji');
+    } 
+
+    public function EditmasterdataGaji()
+    {
+        return view('hr.EditmasterdataGaji');
     }
 
     public function approve(Request $request)
