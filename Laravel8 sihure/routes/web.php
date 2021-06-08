@@ -16,6 +16,7 @@ Route::get('/karyawan/lembur', [karyawanController::class, 'lembur'])->name('lem
 Route::post('/karyawan/lembur/insert', [karyawanController::class, 'lemburinsert']);
 Route::get('/karyawan/karyawan', [karyawanController::class, 'karyawan']);
 Route::get('/karyawan/gaji', [karyawanController::class, 'gaji']);
+Route::get('/karyawan/viewgaji', [karyawanController::class, 'viewgaji']);
 Route::post('/karyawan/todo', [karyawanController::class, 'todo']);
 Route::get('/karyawan/absenpulang', [karyawanController::class, 'absenPulang']);
 Route::post('/karyawan/tabel', [karyawanController::class, 'buattabel']);
