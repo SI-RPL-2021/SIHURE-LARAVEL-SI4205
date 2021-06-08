@@ -10,8 +10,7 @@
     <title>@yield('title')</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/adminLTE/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
@@ -78,25 +77,18 @@
                 <li class="nav-item">
                     <div class="user-panel d-flex">
                         <div class="image">
-                            @if (Auth::user()->foto == null)
-                            <img src="{{ url('/foto/3.png') }}" class="img-circle elevation-1" alt="User Image">
-                            @else
-                            <img src="{{ url('/foto/' . Auth::user()->foto ) }}" class="img-circle elevation-1" alt="User Image">
-                            @endif
+                            <img src="{{ '/foto/3.png' }}" class="img-circle elevation-1" alt="User Image">
                         </div>
                         <div class="info">
-                            <a class="d-block"
-                                style="color:#525A63; font-weight:strong; font-size:20px;">{{ Auth::user()->name }}</a>
+                            <a class="d-block" style="color:#525A63; font-weight:strong; font-size:20px;">{{ Auth::user()->name }}</a>
                         </div>
                     </div>
                 </li>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z" />
                         </svg>
 
                     </a>
@@ -198,8 +190,7 @@
                 <!-- SidebarSearch Form -->
                 <div class="form-inline">
                     <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="cari sini"
-                            aria-label="Search">
+                        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
                         <div class="input-group-append">
                             <button class="btn btn-sidebar">
                                 <i class="fas fa-search fa-fw"></i>
@@ -210,12 +201,11 @@
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
+                        @if ($divisi == 'karyawan')
                         <li class="nav-item">
-                            <a href="#"
-                                class="nav-link {{ request()->is('karyawan/absensi' || 'karyawan/cuti' || 'karyawan/lembur' || 'karyawan/karyawan' || 'karyawan/gaji') ? '' : 'active' }}">
+                            <a href="#" class="nav-link {{ request()->is('karyawan/absensi' || 'karyawan/cuti' || 'karyawan/lembur' || 'karyawan/karyawan' || 'karyawan/gaji') ? '' : 'active' }}">
                                 <p>
                                     karyawan
                                     <i class="right fas fa-angle-left"></i>
@@ -223,36 +213,31 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/karyawan/absensi"
-                                        class="nav-link {{ request()->is('karyawan/absensi') ? 'active' : '' }}">
+                                    <a href="/karyawan/absensi" class="nav-link {{ request()->is('karyawan/absensi') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Absensi</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/karyawan/cuti"
-                                        class="nav-link {{ request()->is('karyawan/cuti') ? 'active' : '' }}">
+                                    <a href="/karyawan/cuti" class="nav-link {{ request()->is('karyawan/cuti') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Cuti</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/karyawan/lembur"
-                                        class="nav-link {{ request()->is('karyawan/lembur') ? 'active' : '' }}">
+                                    <a href="/karyawan/lembur" class="nav-link {{ request()->is('karyawan/lembur') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Lembur</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/karyawan/karyawan"
-                                        class="nav-link {{ request()->is('karyawan/karyawan') ? 'active' : '' }}">
+                                    <a href="/karyawan/karyawan" class="nav-link {{ request()->is('karyawan/karyawan') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Karyawan</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/karyawan/gaji"
-                                        class="nav-link {{ request()->is('karyawan/gaji') ? 'active' : '' }}">
+                                    <a href="/karyawan/gaji" class="nav-link {{ request()->is('karyawan/gaji') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Gaji</p>
                                     </a>
@@ -261,7 +246,7 @@
                         </li>
 
 
-
+                        @elseif ( $divisi == 'hr')
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <p>
@@ -271,8 +256,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/hr/absensi"
-                                        class="nav-link {{ request()->is('hr/absensi') ? 'active' : '' }}">
+                                    <a href="/hr/absensi" class="nav-link {{ request()->is('hr/absensi') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Absensi</p>
                                     </a>
@@ -287,15 +271,13 @@
                                     </a>
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item ml-4">
-                                            <a href="/hr/jatahcuti"
-                                                class="nav-link {{ request()->is('hr/jatahcuti') ? 'active' : '' }}">
+                                            <a href="/hr/jatahcuti" class="nav-link {{ request()->is('hr/jatahcuti') ? 'active' : '' }}">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Jatah Cuti</p>
                                             </a>
                                         </li>
                                         <li class="nav-item ml-4">
-                                            <a href="/hr/cuti"
-                                                class="nav-link {{ request()->is('hr/cuti') ? 'active' : '' }}">
+                                            <a href="/hr/cuti" class="nav-link {{ request()->is('hr/cuti') ? 'active' : '' }}">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Status Cuti</p>
                                             </a>
@@ -304,30 +286,45 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/hr/karyawan"
-                                        class="nav-link {{ request()->is('hr/karyawan') ? 'active' : '' }}">
+                                    <a href="/hr/karyawan" class="nav-link {{ request()->is('hr/karyawan') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Karyawan</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/hr/lembur"
-                                        class="nav-link {{ request()->is('hr/lembur') ? 'active' : '' }}">
+                                    <a href="/hr/lembur" class="nav-link {{ request()->is('hr/lembur') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Lembur</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/hr/penggajian"
-                                        class="nav-link {{ request()->is('hr/penggajian') ? 'active' : '' }}">
+                                    <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Penggajian</p>
+                                        <p>
+                                            Penggajian
+                                        </p>
+                                        <i class="right fas fa-angle-left"></i>
                                     </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item ml-4">
+                                            <a href="/hr/masterdataGaji" class="nav-link {{ request()->is('hr/jatahcuti') ? 'active' : '' }}">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Master Data Gaji</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item ml-4">
+                                            <a href="/hr/penggajian" class="nav-link {{ request()->is('hr/cuti') ? 'active' : '' }}">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Gaji Karyawan</p>
+                                            </a>
+                                        </li>
+
+                                    </ul>
                                 </li>
                             </ul>
                         </li>
 
-
+                        @elseif ( $divisi == 'admin')
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <p>
@@ -337,36 +334,32 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/profile"
-                                        class="nav-link {{ request()->is('/profile') ? 'active' : '' }}">
+                                    <a href="/profile" class="nav-link {{ request()->is('/profile') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Profile</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/cuti"
-                                        class="nav-link {{ request()->is('admin/cuti') ? 'active' : '' }}">
+                                    <a href="/admin/cuti" class="nav-link {{ request()->is('admin/cuti') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Cuti Karyawan</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/lembur"
-                                        class="nav-link {{ request()->is('admin/lembur') ? 'active' : '' }}">
+                                    <a href="/admin/lembur" class="nav-link {{ request()->is('admin/lembur') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Lembur</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/karyawan"
-                                        class="nav-link {{ request()->is('admin/karyawan') ? 'active' : '' }}">
+                                    <a href="/admin/karyawan" class="nav-link {{ request()->is('admin/karyawan') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Karyawan</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-
+                        @endif
 
 
                     </ul>
@@ -383,7 +376,28 @@
             <!-- Main content -->
             <section class="content">
 
+                <h6 style="text-align:right;color:#525A63;font-size:14px;"><span id="tanggal"></span></h6>
+                <h6 style="text-align:right;color:#525A63;font-size:14px;"><span id="waktu"></span></h6>
+                <script>
+                    var tw = new Date();
+                    if (tw.getTimezoneOffset() == 0)(a = tw.getTime() + (7 * 60 * 60 * 1000))
+                    else(a = tw.getTime());
+                    tw.setTime(a);
+                    var tahun = tw.getFullYear();
+                    var hari = tw.getDay();
+                    var bulan = tw.getMonth();
+                    var tanggal = tw.getDate();
+                    var hariarray = new Array("Minggu,", "Senin,", "Selasa,", "Rabu,", "Kamis,", "Jum'at,", "Sabtu,");
+                    var bulanarray = new Array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September",
+                        "Oktober", "Nopember", "Desember");
+                    document.getElementById("tanggal").innerHTML = hariarray[hari] + " " + tanggal + " " + bulanarray[bulan] + " " +
+                        tahun;
+
+                    var dt = new Date();
+                    document.getElementById("waktu").innerHTML = dt.toLocaleTimeString();
+                </script>
                 @yield('content')
+
 
 
             </section>
