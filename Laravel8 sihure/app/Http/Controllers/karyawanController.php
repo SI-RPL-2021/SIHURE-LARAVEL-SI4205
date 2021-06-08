@@ -27,6 +27,24 @@ class karyawanController extends Controller
         return view('profile', ["data" => $data]);
     }
 
+    public function profiletodo(Request $request)
+    {
+        $user_id = auth()->user()->id;
+
+        $file = $request->foto;
+        $filename = $user_id . '.' . $file->extension();
+        $file->move(public_path('foto'), $filename);
+
+        DB::table("users")->where("id", $user_id)
+            ->update([
+
+                "foto" => $filename,
+
+            ]);
+
+            return redirect()->route('profile');
+    }
+
     //Cuti
     public function cuti()
     {

@@ -92,7 +92,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input name="todo_kegiatan" class="form-control" placeholder="cari ">
+                        <label>Upload Foto</label>
+                        <input type="file" name="todo_kegiatan" class="form-control" placeholder="buat foto">
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn  btn-outline-primary" data-dismiss="modal">No</button>

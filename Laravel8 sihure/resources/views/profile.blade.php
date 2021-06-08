@@ -81,7 +81,7 @@
     <div class="modal fade" id="modal-absenmasuk">
         <div class="modal-dialog">
             <div class="modal-content bg-default ">
-                <form action="/karyawan/todo" method="post" enctype="multipart/form-data">
+                <form action="/profile/todo" method="post" enctype="multipart/form-data">
                     @csrf
                     <!-- {{ csrf_field() }} -->
 
@@ -92,7 +92,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input name="todo_kegiatan" class="form-control" placeholder="cari ">
+                        <label>Upload Foto</label>
+                        <input type="file" name="foto" class="form-control" placeholder="upload foto">
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn  btn-outline-primary" data-dismiss="modal">No</button>

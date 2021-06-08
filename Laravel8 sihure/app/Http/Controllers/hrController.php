@@ -54,8 +54,29 @@ class hrController extends Controller
 
     public function karyawan()
     {
-        return view('hr.karyawan');
+
+        // mengambil data dari table pegawai
+		$pegawai = DB::table('todo')->paginate(10);
+
+        // mengirim data pegawai ke view index
+    return view('hr.karyawan',['pegawai' => $pegawai]);
+
     }
+
+    public function cari(Request $request)
+	{
+		// menangkap data pencarian
+		$cari = $request->cari;
+
+    		// mengambil data dari table pegawai sesuai pencarian data
+		$pegawai = DB::table('todo')
+		->where('nama','like',"%".$cari."%")
+		->paginate();
+
+    		// mengirim data pegawai ke view index
+		return view('hr.karyawan',['pegawai' => $pegawai]);
+
+	}
 
     public function lembur()
     {

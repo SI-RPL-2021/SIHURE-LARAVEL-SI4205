@@ -78,7 +78,7 @@
                 <li class="nav-item">
                     <div class="user-panel d-flex">
                         <div class="image">
-                            <img src="{{ '/foto/3.png' }}" class="img-circle elevation-1" alt="User Image">
+                            <img src="{{ url('/foto/' . Auth::user()->foto ) }}" class="img-circle elevation-1" alt="User Image">
                         </div>
                         <div class="info">
                             <a class="d-block"
@@ -194,7 +194,7 @@
                 <!-- SidebarSearch Form -->
                 <div class="form-inline">
                     <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search"
+                        <input class="form-control form-control-sidebar" type="search" placeholder="cari sini"
                             aria-label="Search">
                         <div class="input-group-append">
                             <button class="btn btn-sidebar">
@@ -209,7 +209,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
 
-                        @if ($divisi == 'karyawan')
+
                         <li class="nav-item">
                             <a href="#"
                                 class="nav-link {{ request()->is('karyawan/absensi' || 'karyawan/cuti' || 'karyawan/lembur' || 'karyawan/karyawan' || 'karyawan/gaji') ? '' : 'active' }}">
@@ -258,7 +258,7 @@
                         </li>
 
 
-                        @elseif ( $divisi  == 'hr')
+
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <p>
@@ -324,7 +324,7 @@
                             </ul>
                         </li>
 
-                        @elseif ( $divisi  == 'admin')
+
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <p>
@@ -363,7 +363,7 @@
                                 </li>
                             </ul>
                         </li>
-                        @endif
+
 
 
                     </ul>
