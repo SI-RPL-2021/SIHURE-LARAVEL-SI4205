@@ -54,25 +54,100 @@ class hrController extends Controller
 
     public function karyawan()
     {
-        return view('hr.karyawan');
+        $data1 =  DB::table("users")->get();
+        return view('hr.karyawan', ['data_all' => $data1]);
     }
-    public function editkaryawan()
+
+    public function editkaryawan($id)
     {
-        return view('hr.editkaryawan');
+        $data1 = DB::table("users")
+        ->where("id", $id)
+        ->get();
+
+        $data2 = $data1[0];
+
+        return view('hr.editkaryawan', ["data" => $data2]);
     }
+
     public function addKaryawan()
     {
+
         return view('hr.addKaryawan');
+    }
+
+    public function addKaryawaninput(Request $request)
+    {
+        $test =  bcrypt($request->password);
+        $status = "offline";
+
+        DB::table("users")
+        ->insert([
+
+            "password" => bcrypt($request->password),
+            "name" => $request->name,
+            "email" => $request->email,
+            "divisi" => $request->divisi,
+            "nip" => $request->nip,
+            "alamat" => $request->alamat,
+            "no_telp" => $request->no_tlpn,
+            "status" => $status,
+            "agama" => $request->agama,
+            "tempat_lahir" => $request->tempat_lahir,
+            "tanggal_lahir" => $request->tanggal_lahir,
+            "umur" => $request->umur,
+            "jenis_kelamin" => $request->kelamin,
+            "no_hp" => $request->no_hp,
+            "status_pernikahan" => $request->status,
+            "jumlah_anak" => $request->jumlah_anak,
+            "tahun_masuk" => $request->tahun_masuk,
+
+        ]);
+
+
+        return redirect()->route('addkaryawan')->with('pesan', 'data berhasil diubah');
+    }
+
+
+    public function addKaryawanupdate(Request $request)
+    {
+
+
+        DB::table("users")->where("id", $request->id) ->update([
+
+            "password" => bcrypt($request->password),
+            "name" => $request->name,
+            "email" => $request->email,
+            "divisi" => $request->divisi,
+            "nip" => $request->nip,
+            "alamat" => $request->alamat,
+            "no_telp" => $request->no_tlpn,
+            "agama" => $request->agama,
+            "tempat_lahir" => $request->tempat_lahir,
+            "tanggal_lahir" => $request->tanggal_lahir,
+            "umur" => $request->umur,
+            "jenis_kelamin" => $request->kelamin,
+            "no_hp" => $request->no_hp,
+            "status_pernikahan" => $request->status,
+            "jumlah_anak" => $request->jumlah_anak,
+            "tahun_masuk" => $request->tahun_masuk,
+
+
+        ]);
+
+
+        return redirect()->route('addkaryawan')->with('pesan', 'data berhasil diubah');
     }
 
     public function lembur()
     {
 
+        $user_id = auth()->user()->id;
+
         $data1 =  DB::table("users")->get();
         $data2 =  DB::table("lembur")->get();
 
         $data3 = DB::table("users")
-            ->where("id", 1)
+            ->where("id", $user_id)
             ->get();
 
         $data4 = $data3[0];
@@ -92,27 +167,48 @@ class hrController extends Controller
         $data2 = DB::table("users")
             ->where("id", $id)
             ->get();
-            $data4 = $data2[0];
+        $data4 = $data2[0];
 
-        return view('hr.lembur_id', ["data" => $data1],["data2" => $data4]);
+        return view('hr.lembur_id', ["data" => $data1], ["data2" => $data4]);
     }
 
     public function penggajian()
     {
-        return view('hr.penggajian');
+
+        $data1 =  DB::table("users")->get();
+        return view('hr.penggajian', ['data_all' => $data1]);
     }
-    public function editGaji()
+    public function editGaji(Request $request)
     {
-        return view('hr.editGaji');
+        DB::table("cuti")
+            ->insert([
+
+                "id_user" => $request->iduser,
+                "nama" => $request->nama,
+                "status" => $request->status,
+                "jumlahhari" => $request->jatah,
+                "keterangan" => $request->keterangan,
+            ]);
+
+            return view('hr.editgaji');
     }
+
+
     public function masterdataGaji()
     {
-        return view('hr.masterdataGaji');
-    } 
+        $data1 = DB::table("master_data")->where("id", 1)->get();
+        $data = $data1[0];
+
+        return view('hr.masterdataGaji', ["data" => $data]);
+    }
 
     public function EditmasterdataGaji()
     {
-        return view('hr.EditmasterdataGaji');
+
+        $data1 = DB::table("master_data")->where("id", 1)->get();
+        $data = $data1[0];
+
+        return view('hr.EditmasterdataGaji', ["data" => $data]);
     }
 
     public function approve(Request $request)
@@ -195,5 +291,4 @@ class hrController extends Controller
 
         return view('hr.profile', ["data" => $data]);
     }
-
 }

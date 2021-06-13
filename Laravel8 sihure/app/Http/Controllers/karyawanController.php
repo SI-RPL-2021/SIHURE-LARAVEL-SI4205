@@ -42,7 +42,7 @@ class karyawanController extends Controller
 
             ]);
 
-            return redirect()->route('profile');
+        return redirect()->route('profile');
     }
 
     //Cuti
@@ -95,7 +95,6 @@ class karyawanController extends Controller
             ->update([
                 "jumlahcuti" => $request->jumlahcuti,
             ]);
-
 
         return redirect()->route('cuti')->with('pesan', 'data berhasil ditambahkan');
     }
@@ -235,19 +234,28 @@ class karyawanController extends Controller
         $name = auth()->user()->name;
 
         DB::table("cuti")
-        ->insert([
+            ->insert([
 
 
-            "id_user" => $user_id,
-            "nama" => $name,
-            "status" => 1,
-        ]);
+                "id_user" => $user_id,
+                "nama" => $name,
+                "status" => 1,
+            ]);
 
-        return redirect()->route('absensi');
+        DB::table("master_data")
+            ->insert([
+
+
+                "tunjangan" => 0,
+                "lembur" => 0,
+
+            ]);
+
+        return redirect()->route('home');
     }
 
-    public function viewgaji() {
+    public function viewgaji()
+    {
         return view('karyawan.viewgaji');
     }
-
 }

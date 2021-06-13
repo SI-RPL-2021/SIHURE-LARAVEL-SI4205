@@ -6,6 +6,7 @@ use App\Http\Controllers\karyawanController;
 use App\Http\Controllers\hrController;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\pegawaiController;
+use App\Http\Controllers\penggajianController;
 
 
 Route::get('/', [HomeController::class, 'index']);
@@ -25,19 +26,22 @@ Route::post('/karyawan/tabel', [karyawanController::class, 'buattabel']);
 //hr
 Route::get('/hr/absensi', [hrController::class, 'absensi']);
 Route::get('/hr/cuti', [hrController::class, 'cuti'])->name('hrcuti');
-Route::get('/hr/karyawan', [hrController::class, 'karyawan']);
+Route::get('/hr/karyawan', [hrController::class, 'karyawan'])->name('addkaryawan');
 Route::get('/hr/addKaryawan', [hrController::class, 'addKaryawan']);
-Route::get('/hr/editkaryawan', [hrController::class, 'editkaryawan']);
+Route::get('/hr/editkaryawan/{id}', [hrController::class, 'editkaryawan']);
 Route::get('/hr/karyawan/cari', [hrController::class, 'cari']);
 Route::get('/hr/lembur', [hrController::class, 'lembur']);
 Route::get('/hr/lembur/{id}', [hrController::class, 'lembur_id']);
 Route::get('/hr/penggajian', [hrController::class, 'penggajian']);
-Route::get('/hr/editGaji', [hrController::class, 'editGaji']);
-Route::get('/hr/masterdataGaji', [hrController::class, 'masterdataGaji']);
+Route::get('/hr/editGaji/{id}', [hrController::class, 'editGaji']);
+Route::get('/hr/masterdataGaji', [hrController::class, 'masterdataGaji'])->name('hrgaji');;
 Route::get('/hr/EditmasterdataGaji', [hrController::class, 'EditmasterdataGaji']);
 Route::post('/hr/approvecuti', [hrController::class, 'approve']);
 Route::get('/hr/jatahcuti', [hrController::class, 'jatahcuti'])->name('jatahcuti');
 Route::post('/hr/jatahcuti/{id}', [hrController::class, 'jatahcutiupdate']);
+
+Route::post('/hr/addKaryawan/input', [hrController::class, 'addKaryawaninput']);
+Route::post('/hr/addKaryawan/update', [hrController::class, 'addKaryawanupdate']);
 
 //admin
 Route::get('/admin/profile', [adminController::class, 'profile']);
@@ -60,3 +64,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/pegawai',[pegawaiController::class, 'index']);
 Route::get('/pegawai/cari',[pegawaiController::class, 'cari']);
+
+
+//penggajian
+Route::get('/hr/EditmasterdataGaji/gaji', [penggajianController::class,'gajian']);
+Route::post('/hr/jatahcuti/{id}', [hrController::class, 'jatahcutiupdate']);

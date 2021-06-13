@@ -77,7 +77,11 @@
                 <li class="nav-item">
                     <div class="user-panel d-flex">
                         <div class="image">
-                            <img src="{{ '/foto/3.png' }}" class="img-circle elevation-1" alt="User Image">
+                            @if (Auth::user()->foto == null)
+                            <img src="{{ url('/foto/3.png') }}" class="img-circle elevation-1" alt="User Image">
+                            @else
+                            <img src="{{ url('/foto/' . Auth::user()->foto ) }}" class="img-circle elevation-1" alt="User Image">
+                            @endif
                         </div>
                         <div class="info">
                             <a class="d-block" style="color:#525A63; font-weight:strong; font-size:20px;">{{ Auth::user()->name }}</a>
@@ -203,7 +207,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-                        @if ($divisi == 'karyawan')
+                        {{-- @if ($divisi == 'karyawan') --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link {{ request()->is('karyawan/absensi' || 'karyawan/cuti' || 'karyawan/lembur' || 'karyawan/karyawan' || 'karyawan/gaji') ? '' : 'active' }}">
                                 <p>
@@ -246,7 +250,7 @@
                         </li>
 
 
-                        @elseif ( $divisi == 'hr')
+                        {{-- @elseif ( $divisi == 'hr') --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <p>
@@ -324,7 +328,7 @@
                             </ul>
                         </li>
 
-                        @elseif ( $divisi == 'admin')
+                        {{-- @elseif ( $divisi == 'admin') --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <p>
@@ -359,7 +363,7 @@
                                 </li>
                             </ul>
                         </li>
-                        @endif
+                        {{-- @endif --}}
 
 
                     </ul>

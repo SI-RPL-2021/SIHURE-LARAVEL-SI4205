@@ -24,6 +24,19 @@ class CreateUsersTable extends Migration
             $table->integer('jumlahcuti')->nullable();
             $table->string('foto')->nullable();
             $table->string('status')->nullable();
+            $table->integer('nip')->nullable();
+            $table->string('alamat')->nullable();
+            $table->integer('no_telp')->nullable();
+            $table->string('agama')->nullable();
+            $table->string('tempat_lahir')->nullable();
+            $table->date('tanggal_lahir')->nullable();
+            $table->integer('umur')->nullable();
+            $table->string('jenis_kelamin')->nullable();
+            $table->integer('no_hp')->nullable();
+            $table->string('status_pernikahan')->nullable();
+            $table->integer('jumlah_anak')->nullable();
+            $table->integer('tahun_masuk')->nullable();
+
 
         });
     }

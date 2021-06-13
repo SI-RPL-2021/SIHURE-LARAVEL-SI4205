@@ -20,7 +20,7 @@
         <div class="form-group row">
             <label for="inputNama" class="col-sm-2 col-form-label" style="color:#525A63;">Tunjangan Anak/anak</label>
             <div class="col-sm-10">
-                <input type="text" readonly class="form-control" id="nama">
+                <input type="text" readonly class="form-control" value="Rp. {{$data->tunjangan}}" id="nama">
             </div>
         </div>
         <!-- INSENTIF-->
@@ -31,7 +31,7 @@
         <div class="form-group row">
             <label for="inputEmail" class="col-sm-2 col-form-label" style="color:#525A63;">Lembur/jam</label>
             <div class="col-sm-10">
-                <input type="text" readonly class="form-control" id="inputEmail">
+                <input type="text" readonly class="form-control" value="Rp. {{$data->lembur}}" id="inputEmail">
             </div>
         </div>
         <td style="text-align:center;"><a href="/hr/EditmasterdataGaji" button type="button" class="btn btn-primary" style="border-radius: 22px; height: 40px; width: 116px; box-shadow: -2px 3px 5px #84868A; float:right;"><strong>

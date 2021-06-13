@@ -31,11 +31,13 @@ class adminController extends Controller
 
     public function lembur()
     {
+        $user_id = auth()->user()->id;
+
         $data1 =  DB::table("users")->where("id", 1)->get();
         $data2 =  DB::table("lembur")->where("status", 0)->get();
 
         $data3 = DB::table("users")
-            ->where("id", 1)
+            ->where("id", $user_id)
             ->get();
 
         $data4 = $data3[0];
@@ -49,7 +51,7 @@ class adminController extends Controller
 
         $data =  DB::table("lembur")->get();
 
-        return view('admin.lemburlihat',['data' => $data]);
+        return view('admin.lemburlihat', ['data' => $data]);
     }
 
     public function cuti()
@@ -78,7 +80,6 @@ class adminController extends Controller
 
 
         return view('admin.cuti', ['data_all' => $data_all]);
-
     }
 
     public function approve(Request $request)

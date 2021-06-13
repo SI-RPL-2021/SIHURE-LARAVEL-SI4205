@@ -10,7 +10,7 @@
 <br>
 <div class="container">
     <div class="btn-group">
-        <td style="text-align:center;"><a href="/hr/addKaryawan" button type="button" class="btn btn" 
+        <td style="text-align:center;"><a href="/hr/addKaryawan" button type="button" class="btn btn"
         style="background-color:#5882B7; color:white; border-radius: 22px; box-shadow: -2px 3px 5px #84868A; height:40px; width: 160px;"><strong>
                     Tambah Karyawan
                 </strong></a></td>
@@ -33,15 +33,23 @@
                         <th style="text-align:center;">Action</th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td style="text-align:left;">1</td>
-                        <td style="text-align:center;">Anastassya Gustirani</td>
-                        <td style="text-align:center;">Karyawan</td>
-                        <td style="text-align:center;"><a href="/hr/editkaryawan" button type="button" class="btn btn" style="background-color: #296CD9; border-radius:22px; width:116px; height:40px; font-size:14px; color:white;"><strong>
-                                    Edit
-                                </strong></a></td>
+                    <?php $no = 1; ?>
+                        @foreach ($data_all as $data)
 
-                    </tr>
+                            <tr>
+                                <td style="text-align:left;">{{ $no++ }}</td>
+                                <td style="text-align:center;">{{ $data->name }}</td>
+                                <td style="text-align:center;">{{ $data->divisi }}</td>
+                                <td style="text-align:center;"><a href="/hr/editkaryawan/{{ $data->id }}" button type="button"
+                                        class="btn btn-primary"
+                                        style="border-radius:22px; width:116px; height:40px; font-size:16px; color:white;"><strong>
+                                            View
+                                        </strong></a>
+
+                                </td>
+                            </tr>
+                        @endforeach
+
 
                 </tbody>
             </table>
