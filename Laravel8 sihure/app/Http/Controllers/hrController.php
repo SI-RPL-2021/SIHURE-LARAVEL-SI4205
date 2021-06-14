@@ -205,7 +205,7 @@ class hrController extends Controller
         $data = $data1[0];
 
         $data5 = DB::table("gaji")
-            ->where("id", $id)
+            ->where("id_user", $id)
             ->get();
         $data3 = $data5[0];
 
