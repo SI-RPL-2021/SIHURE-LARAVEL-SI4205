@@ -61,8 +61,8 @@ class hrController extends Controller
     public function editkaryawan($id)
     {
         $data1 = DB::table("users")
-        ->where("id", $id)
-        ->get();
+            ->where("id", $id)
+            ->get();
 
         $data2 = $data1[0];
 
@@ -81,27 +81,29 @@ class hrController extends Controller
         $status = "offline";
 
         DB::table("users")
-        ->insert([
+            ->insert([
 
-            "password" => bcrypt($request->password),
-            "name" => $request->name,
-            "email" => $request->email,
-            "divisi" => $request->divisi,
-            "nip" => $request->nip,
-            "alamat" => $request->alamat,
-            "no_telp" => $request->no_tlpn,
-            "status" => $status,
-            "agama" => $request->agama,
-            "tempat_lahir" => $request->tempat_lahir,
-            "tanggal_lahir" => $request->tanggal_lahir,
-            "umur" => $request->umur,
-            "jenis_kelamin" => $request->kelamin,
-            "no_hp" => $request->no_hp,
-            "status_pernikahan" => $request->status,
-            "jumlah_anak" => $request->jumlah_anak,
-            "tahun_masuk" => $request->tahun_masuk,
+                "password" => bcrypt($request->password),
+                "name" => $request->name,
+                "email" => $request->email,
+                "divisi" => $request->divisi,
+                "nip" => $request->nip,
+                "alamat" => $request->alamat,
+                "no_telp" => $request->no_tlpn,
+                "status" => $status,
+                "agama" => $request->agama,
+                "tempat_lahir" => $request->tempat_lahir,
+                "tanggal_lahir" => $request->tanggal_lahir,
+                "umur" => $request->umur,
+                "jenis_kelamin" => $request->kelamin,
+                "no_hp" => $request->no_hp,
+                "status_pernikahan" => $request->status,
+                "jumlah_anak" => $request->jumlah_anak,
+                "tahun_masuk" => $request->tahun_masuk,
 
-        ]);
+            ]);
+
+
 
 
         return redirect()->route('addkaryawan')->with('pesan', 'data berhasil diubah');
@@ -112,7 +114,7 @@ class hrController extends Controller
     {
 
 
-        DB::table("users")->where("id", $request->id) ->update([
+        DB::table("users")->where("id", $request->id)->update([
 
             "password" => bcrypt($request->password),
             "name" => $request->name,
@@ -176,21 +178,61 @@ class hrController extends Controller
     {
 
         $data1 =  DB::table("users")->get();
+
+
         return view('hr.penggajian', ['data_all' => $data1]);
     }
-    public function editGaji(Request $request)
-    {
-        DB::table("cuti")
-            ->insert([
 
-                "id_user" => $request->iduser,
-                "nama" => $request->nama,
-                "status" => $request->status,
-                "jumlahhari" => $request->jatah,
-                "keterangan" => $request->keterangan,
+    // public function editGaji($id)
+    // {
+
+    //     DB::table("gaji")
+    //     ->insert([
+
+    //         "id_user" => $id,
+
+    //     ]);
+
+    // return redirect()->route('viewgaji')->with('pesan', 'data berhasil diubah');
+    // }
+
+    public function viewGaji($id)
+    {
+
+        $data1 = DB::table("users")
+            ->where("id", $id)
+            ->get();
+        $data = $data1[0];
+
+        $data5 = DB::table("gaji")
+            ->where("id", $id)
+            ->get();
+        $data3 = $data5[0];
+
+
+
+
+        return view('hr.viewgaji', ["data1" => $data3], ["data" => $data]);
+    }
+
+    public function viewgajiupdate(Request $request)
+    {
+
+        DB::table("gaji")
+            ->where("id_user", $request->id)
+            ->update([
+                'gaji_pokok' => $request->gaji_pokok,
+                'biaya_transportasi' => $request->biaya_transportasi,
+                'tunjangan_anak' => $request->tunjangan_anak,
+                'tunjangan_kesehatan' => $request->tunjangan_kesehatan,
+                'pajak_pendapatan' => $request->pajak_pendapatan,
+                'lembur' => $request->lembur,
+                'tugas_keluar' => $request->tugas_keluar,
+                'performa_kerja' => $request->performa_kerja,
+                'ketidak_hadiran' => $request->ketidakhadiran,
             ]);
 
-            return view('hr.editgaji');
+        return redirect()->route('viewgaji')->with('pesan', 'data berhasil diubah');
     }
 
 

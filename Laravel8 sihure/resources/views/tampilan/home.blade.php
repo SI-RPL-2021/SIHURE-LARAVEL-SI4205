@@ -5,7 +5,19 @@
 
 @section('content')
 
-    <br>
+<?php $divisi = Auth::user()->divisi; ?>
+<?php $code = Auth::user()->code; ?>
+
+<div class="d-flex justify-content-center" style="margin-top:0px">
+
+    @if ($code == null)
+    <a href="/start" > <button type="button" class="btn btn-primary">start</button> </a>
+    @endif
+
+    @if ($divisi == null)
+    <a href="/divisi" > <button type="button" class="btn btn-primary">divisi</button> </a>
+    @endif
+</div>
 
     <div class="d-flex justify-content-center" style="margin-top:0px">
 

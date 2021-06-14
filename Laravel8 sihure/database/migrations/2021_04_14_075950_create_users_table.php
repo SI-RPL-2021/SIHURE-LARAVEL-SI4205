@@ -36,6 +36,7 @@ class CreateUsersTable extends Migration
             $table->string('status_pernikahan')->nullable();
             $table->integer('jumlah_anak')->nullable();
             $table->integer('tahun_masuk')->nullable();
+            $table->integer('code')->nullable();
 
 
         });

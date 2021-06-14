@@ -207,7 +207,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-                        {{-- @if ($divisi == 'karyawan') --}}
+                        @if ($divisi == 'karyawan')
                         <li class="nav-item">
                             <a href="#" class="nav-link {{ request()->is('karyawan/absensi' || 'karyawan/cuti' || 'karyawan/lembur' || 'karyawan/karyawan' || 'karyawan/gaji') ? '' : 'active' }}">
                                 <p>
@@ -250,7 +250,7 @@
                         </li>
 
 
-                        {{-- @elseif ( $divisi == 'hr') --}}
+                        @elseif ( $divisi == 'hr')
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <p>
@@ -328,7 +328,7 @@
                             </ul>
                         </li>
 
-                        {{-- @elseif ( $divisi == 'admin') --}}
+                        @elseif ( $divisi == 'admin')
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <p>
@@ -363,7 +363,7 @@
                                 </li>
                             </ul>
                         </li>
-                        {{-- @endif --}}
+                        @endif
 
 
                     </ul>

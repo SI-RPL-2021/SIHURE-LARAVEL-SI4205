@@ -32,14 +32,15 @@ Route::get('/hr/editkaryawan/{id}', [hrController::class, 'editkaryawan']);
 Route::get('/hr/karyawan/cari', [hrController::class, 'cari']);
 Route::get('/hr/lembur', [hrController::class, 'lembur']);
 Route::get('/hr/lembur/{id}', [hrController::class, 'lembur_id']);
-Route::get('/hr/penggajian', [hrController::class, 'penggajian']);
+Route::get('/hr/penggajian', [hrController::class, 'penggajian'])->name('viewgaji');
 Route::get('/hr/editGaji/{id}', [hrController::class, 'editGaji']);
 Route::get('/hr/masterdataGaji', [hrController::class, 'masterdataGaji'])->name('hrgaji');;
 Route::get('/hr/EditmasterdataGaji', [hrController::class, 'EditmasterdataGaji']);
 Route::post('/hr/approvecuti', [hrController::class, 'approve']);
 Route::get('/hr/jatahcuti', [hrController::class, 'jatahcuti'])->name('jatahcuti');
 Route::post('/hr/jatahcuti/{id}', [hrController::class, 'jatahcutiupdate']);
-
+Route::get('/hr/viewGaji/{id}', [hrController::class, 'viewGaji']);
+Route::get('/hr/viewGajiupdate', [hrController::class, 'viewgajiupdate']);
 Route::post('/hr/addKaryawan/input', [hrController::class, 'addKaryawaninput']);
 Route::post('/hr/addKaryawan/update', [hrController::class, 'addKaryawanupdate']);
 
@@ -68,4 +69,7 @@ Route::get('/pegawai/cari',[pegawaiController::class, 'cari']);
 
 //penggajian
 Route::get('/hr/EditmasterdataGaji/gaji', [penggajianController::class,'gajian']);
-Route::post('/hr/jatahcuti/{id}', [hrController::class, 'jatahcutiupdate']);
+
+//register
+Route::post('/daftar', [HomeController::class, 'daftar']);
+Route::get('/divisi', [HomeController::class, 'divisi']);

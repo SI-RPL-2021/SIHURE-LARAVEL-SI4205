@@ -61,11 +61,16 @@
                                 <td style="text-align:left;">{{ $no++ }}</td>
                                 <td style="text-align:center;">{{ $data->name }}</td>
                                 <td style="text-align:center;">{{ $data->divisi }}</td>
-                                <td style="text-align:center;"><a href="/hr/editGaji/{{ $data->id }}" button type="button"
+                                <td style="text-align:center;">
+
+                                    <a href="/hr/viewGaji/{{ $data->id }}" button type="button"
                                         class="btn btn-primary"
                                         style="border-radius:22px; width:116px; height:40px; font-size:16px; color:white;"><strong>
-                                            View
-                                        </strong></a>
+                                            view
+                                        </strong>
+                                    </a>
+
+
                                     <a href="#" button type="button" class="btn btn-warning"
                                         style=" border-radius:22px; width:116px; height:40px; font-size:16px; color:black;"><strong>
                                             Cetak

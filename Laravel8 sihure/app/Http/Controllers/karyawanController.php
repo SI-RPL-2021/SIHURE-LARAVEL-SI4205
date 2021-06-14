@@ -251,6 +251,19 @@ class karyawanController extends Controller
 
             ]);
 
+        DB::table("gaji")
+
+            ->insert([
+                "id_user" => $user_id,
+            ]);
+
+        DB::table("users")->where("id", $user_id)
+            ->update([
+
+                "code" => 1,
+
+            ]);
+
         return redirect()->route('home');
     }
 
