@@ -224,7 +224,14 @@ class karyawanController extends Controller
 
     public function gaji()
     {
-        return view('karyawan.gaji');
+
+        $user_id = auth()->user()->id;
+
+        $data1 =  DB::table("gaji")
+            ->where("id_user", $user_id)
+            ->get();
+
+        return view('karyawan.gaji', ['data_all' => $data1]);
     }
 
     public function starter()
@@ -269,6 +276,13 @@ class karyawanController extends Controller
 
     public function viewgaji()
     {
-        return view('karyawan.viewgaji');
+        $user_id = auth()->user()->id;
+
+        $data1 =  DB::table("gaji")
+            ->where("id_user", $user_id)
+            ->get();
+
+        return view('karyawan.viewgaji', ['data_all' => $data1]);
+
     }
 }

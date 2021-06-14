@@ -8,34 +8,6 @@
         <strong>DAFTAR KARYAWAN</strong>
     </h1>
     <br>
-    <div class="container">
-        <div class="btn-group">
-            <div class="dropdown" style='padding-right:30px;'>
-                <button class="btn dropdown-toggle" type="button" id="Divisi" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false"
-                    style="background-color:#5882B7; color:white; border-radius: 22px; box-shadow: -2px 3px 5px #84868A; height:40px; width: 100px;">
-                    Divisi
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">HR</a>
-                    <a class="dropdown-item" href="#">IT</a>
-                    <a class="dropdown-item" href="#">dll</a>
-                </div>
-            </div>
-        </div>
-        <div class="btn-group" style='padding-right:0; padding-left:30px;'>
-            <div class="form-outline">
-                <input id="search-focus" style=" border-radius: 22px 0px 0px 22px;" type="search" id="form1"
-                    class="form-control">
-            </div>
-            <div class="btn-group">
-                <button type="button" class="btn"
-                    style='height: 38px;background-color:#5882B7; color:white; border-radius: 0px 22px 22px 0px;'>
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </div>
-    </div>
     <br>
     <!-- Table -->
     <div class="container">
@@ -69,12 +41,6 @@
                                             view
                                         </strong>
                                     </a>
-
-
-                                    <a href="#" button type="button" class="btn btn-warning"
-                                        style=" border-radius:22px; width:116px; height:40px; font-size:16px; color:black;"><strong>
-                                            Cetak
-                                        </strong></a>
                                 </td>
                             </tr>
                         @endforeach

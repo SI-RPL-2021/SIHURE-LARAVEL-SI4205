@@ -5,7 +5,7 @@
 
 @section('content')
 <h1 style='text-align:center; color:#525A63; font-family:Open Sans,Arial,sans-serif; font-size:36px; font-weight: 500;'>
-    <strong>TAMBAH KARYAWAN test</strong>
+    <strong>TAMBAH KARYAWAN</strong>
 </h1>
 <br>
 <br>
@@ -129,7 +129,12 @@
       <input type="text" class="form-control" id="inputEmail" name="tahun_masuk">
     </div>
   </div>
-  <button type="submit" class="btn  btn-success"><strong>Submit</strong></button>
+  <div class="form-group">
+  <button type="submit" class="btn  btn-success" style="float: right;"><strong>Submit</strong></button>
+  </div>
+  <br>
+  <br>
+  <br>
 </form>
 
 </div>

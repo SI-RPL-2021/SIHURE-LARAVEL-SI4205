@@ -22,7 +22,7 @@
   <div class="form-group row">
     <label for="inputNama" class="col-sm-2 col-form-label" style="color:#525A63;">Gaji Pokok</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="nama" name="gaji_pokok" value="{{$data->id }} " readonly>
+      <input type="text" class="form-control" id="nama" name="gaji_pokok" value="{{$data1->gaji_pokok}} ">
     </div>
   </div>
 

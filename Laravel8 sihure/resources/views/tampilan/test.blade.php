@@ -310,12 +310,12 @@
                                         <i class="right fas fa-angle-left"></i>
                                     </a>
                                     <ul class="nav nav-treeview">
-                                        <li class="nav-item ml-4">
+                                        <!-- <li class="nav-item ml-4">
                                             <a href="/hr/masterdataGaji" class="nav-link {{ request()->is('hr/jatahcuti') ? 'active' : '' }}">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Master Data Gaji</p>
                                             </a>
-                                        </li>
+                                        </li> -->
                                         <li class="nav-item ml-4">
                                             <a href="/hr/penggajian" class="nav-link {{ request()->is('hr/cuti') ? 'active' : '' }}">
                                                 <i class="far fa-circle nav-icon"></i>
